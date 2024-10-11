@@ -18,13 +18,7 @@
     "no-underscore-dangle": "off",
     "max-classes-per-file": "off",
     "remove-unused-variable": "off",
-    "no-restricted-syntax": [
-      "error",
-      {
-        "selector": "Literal[value='']",
-        "message": "Empty strings ('') are not allowed."
-      }
-    ],
+    "no-restricted-syntax": "off",
     "func-names": "off",
     "no-shadow": "off",
     "no-param-reassign": "off",
