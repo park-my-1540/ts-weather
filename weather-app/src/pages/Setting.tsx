@@ -1,11 +1,20 @@
+import { useState } from 'react';
 import { setting, header, container } from "@/styles/style.css";
+import { lightTheme, darkTheme } from "@/styles/createThemeContract.css";
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
 
+
 export default function Setting() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
   return (
     <>
-      <div className={setting}>
+      <div className={`${isDarkMode ? darkTheme : lightTheme} ${setting}`}>
+      <Button 
+        value="dark"
+        fontSize ="small"
+        onClick={() => setIsDarkMode(!isDarkMode)}
+        theme="blue"></Button>
         <div className={header}>
             <h2>Settings</h2>
         </div>
@@ -13,7 +22,6 @@ export default function Setting() {
             <Input 
                 id="1"
                 widthSize="medium"
-                color="white"
                 placeholder="Search City ex) Seoul"
                 onChange={(()=>console.log('꾹'))}
              />

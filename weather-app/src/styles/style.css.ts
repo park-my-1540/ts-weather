@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css'
+import { vars } from '@/styles/createThemeContract.css'
 
 export const device = style({
     position:'relative',
@@ -8,7 +9,7 @@ export const device = style({
     height:725,
     top:0,
     right:0,
-    background:'#444',
+    background: vars.color.bgPrimary,
     borderRadius: 20,
     boxShadow:'0 0 2px #000',
     transition:'.6s',
@@ -24,7 +25,7 @@ export const setting = style({
     margin: 'auto',
     width: '100%',
     height: '100%',
-    background:' #f2f2f2',
+    background: vars.color.bgPrimary,
     zIndex: 3,
     textShadow: '0 0 1px rgba(0, 0, 0, .01)',
     borderRadius: 20,
