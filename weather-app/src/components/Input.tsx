@@ -1,15 +1,9 @@
-import { input} from '@/styles/inputs.css';
 import React from 'react';
-import { styleWidth } from '@/styles/variants.css';
-import { WidthSize } from "@/types/styles";
-
-interface InputStyleProps {
-    widthSize: WidthSize;
-}
+import { input, InputVariantProps } from '@/styles/inputs.css';
 
 type ReactInputProps = React.ComponentPropsWithoutRef<'input'>;
 
-interface InputProps extends Partial<InputStyleProps> {
+type InputProps = {
   id: ReactInputProps['id'];
   className?: ReactInputProps['className'];
   placeholder: string;
@@ -18,15 +12,14 @@ interface InputProps extends Partial<InputStyleProps> {
 }
 
 export const Input = ({
-  className = '',
   id,
   onChange,
-  widthSize = 'default',
+  color = 'primary',
+  size = 'medium',
   placeholder = '입력해주세요.',
   value = '',
-}: InputProps) => {
+}: InputProps & Partial<InputVariantProps>) => {
     
-  const widthClass = styleWidth[widthSize]; // widthSize[defulat or medium]
 
   return (
     <input
@@ -35,7 +28,7 @@ export const Input = ({
         onChange={onChange}
         placeholder={placeholder}
         value={value}
-        className={`${input} ${widthClass} ${className}`}
+        className={input({ color, size})}
     />
   );
 };

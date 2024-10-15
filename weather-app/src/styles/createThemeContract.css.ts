@@ -5,6 +5,7 @@ export const vars = createThemeContract({
     primary: '', // primary: 주 색상 (메인 인터랙션, 버튼 등)
     tertiary:'', //tertiary: 서브 보조 색상
     bgPrimary: '', //bgPrimary: 메인 배경 색상
+    bgSecondary: '',
     accent:'', //accent: 강조 색상 (알림, 중요한 정보 표시)
   },
 })
@@ -14,6 +15,7 @@ export const lightTheme = createTheme(vars, {
       primary: '#444',
       tertiary: '#727272',
       bgPrimary: '#f2f2f2',
+      bgSecondary: '#fff',
       accent:'#FFF'
     },
   })
@@ -22,6 +24,7 @@ export const darkTheme = createTheme(vars, {
       primary: 'red',
       tertiary: '#727272',
       bgPrimary: 'black',
+      bgSecondary: '#fff',
       accent:''
     },
   })

@@ -10,11 +10,9 @@ export default function Setting() {
   return (
     <>
       <div className={`${isDarkMode ? darkTheme : lightTheme} ${setting}`}>
-      <Button 
-        value="dark"
-        fontSize ="small"
-        onClick={() => setIsDarkMode(!isDarkMode)}
-        theme="blue"></Button>
+        <Button theme="blue" color="accent" size="medium" rounded onClick={() => setIsDarkMode(!isDarkMode)}>
+            dark
+        </Button>
         <div className={header}>
             <h2>Settings</h2>
         </div>
@@ -25,11 +23,9 @@ export default function Setting() {
                 placeholder="Search City ex) Seoul"
                 onChange={(()=>console.log('꾹'))}
              />
-             <Button 
-                value="update"
-                fontSize ="small"
-                onClick={(()=>console.log('꾹'))}
-                theme="blue"></Button>
+            <Button theme="blue" color="accent" size="medium" rounded onClick={() => alert('Clicked!')}>
+              update
+            </Button>
         </div>
       </div>
     </>

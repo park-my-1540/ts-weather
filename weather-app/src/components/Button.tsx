@@ -1,33 +1,23 @@
 import React from 'react';
-import { button } from '@/styles/buttons.css';
-import { styleFontSize, styleBgColor } from '@/styles/variants.css';
-import { FontSize, ThemeColor } from "@/types/styles";
+import { button, ButtonVariantProps} from '@/styles/buttons.css';
 
-interface ButtonStyleProps {
-    fontSize: FontSize;
-    theme: ThemeColor;
-}
-
-interface ButtonProps extends Partial<ButtonStyleProps> {
-    value: string;
-    onClick: React.MouseEventHandler<HTMLButtonElement>
+type ButtonProps = {
+    onClick: React.MouseEventHandler<HTMLButtonElement>;
+    children: React.ReactNode;
 }
 
 export const Button = ({
-    value,
+    theme = 'blue',
+    color = 'primary',
+    size = 'medium',
+    rounded = false,
     onClick,
-    fontSize = "small",
-    theme = "blue"
-}: ButtonProps ) => {
+    children,
+}: ButtonProps & Partial<ButtonVariantProps>) => {
     
-    const widthClass = styleFontSize[fontSize]; // widthSize[defulat or medium]
-    const colorClass = styleBgColor[theme];
-
-    return (
-        <button 
-            onClick={onClick}
-            className={`${button} ${widthClass} ${colorClass}`}
-            type="button">{value}</button>
-       
-      );
-    };
+return (
+    <button type="button" className={button({ theme, color, size, rounded })} onClick={onClick}>
+        {children}
+    </button>
+    );
+};
