@@ -1,28 +1,11 @@
-import Head from "next/head";
-import Image from "next/image";
-import localFont from "next/font/local";
-import { page, text } from "@/styles/style.css";
-
-
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
-
+// App.tsx
+import { device } from "@/styles/style.css";
+import Setting from "@/pages/setting"
 export default function Home() {
   return (
     <>
-  
-      <div
-        className={text}
-      >
-       안녕
+      <div className={device}>
+        <Setting/>
       </div>
     </>
   );
