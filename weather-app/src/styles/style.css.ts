@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
-import { vars } from '@/styles/createThemeContract.css'
-
+import { vars } from '@/styles/common/createThemeContract.css'
+import { sprinkles, colors } from './common/sprinkles.css';
 export const device = style({
     position:'relative',
     overflow:'hidden',
@@ -29,7 +29,7 @@ export const setting = style({
     zIndex: 3,
     textShadow: '0 0 1px rgba(0, 0, 0, .01)',
     borderRadius: 20,
-    color: '#444',
+    color: colors['gray-700'],
 })
 
 export const header = style({
@@ -40,10 +40,28 @@ export const header = style({
     background: '#f9f9f9',
 })
 
-export const container = style({
-    position: 'relative',
-    width: '100%',
-    height: 'calc(100% - 52px)',
-    padding: 20,
-    margin: '0 auto',
+export const container = style([
+    sprinkles({ paddingX: 'large' }),
+    {
+      position: 'relative',
+      width: '100%',
+      height: 'calc(100% - 52px)',
+      margin: '0 auto',
+    }
+  ]);
+
+export const itemBox = style([
+    sprinkles({ paddingX: 'medium', paddingY: 'medium' }),
+    {
+      position: 'relative',
+      width: '100%',
+      marginTop: 15,
+      background: vars.color.bgSecondary,
+      borderRadius: 20
+    }
+  ]);
+
+
+export const none = style({
+    display: 'none'
 })

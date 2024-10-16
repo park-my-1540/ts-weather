@@ -1,4 +1,6 @@
 import { createThemeContract, createTheme } from '@vanilla-extract/css'
+import { colors } from './sprinkles.css'; // colors 객체 가져오기
+type ColorKey = keyof typeof colors;
 
 export const vars = createThemeContract({
   color: {
@@ -6,17 +8,19 @@ export const vars = createThemeContract({
     tertiary:'', //tertiary: 서브 보조 색상
     bgPrimary: '', //bgPrimary: 메인 배경 색상
     bgSecondary: '',
+    bgInactive: '',
     accent:'', //accent: 강조 색상 (알림, 중요한 정보 표시)
   },
 })
 
 export const lightTheme = createTheme(vars, {
     color: {
-      primary: '#444',
-      tertiary: '#727272',
-      bgPrimary: '#f2f2f2',
-      bgSecondary: '#fff',
-      accent:'#FFF'
+      primary: colors['gray-700' as ColorKey],
+      tertiary: colors['gray-400' as ColorKey],
+      bgPrimary: colors['gray-200' as ColorKey],
+      bgSecondary: colors['white' as ColorKey],
+      bgInactive: colors['gray-500' as ColorKey],
+      accent: colors['white' as ColorKey]
     },
   })
 export const darkTheme = createTheme(vars, {
@@ -25,6 +29,7 @@ export const darkTheme = createTheme(vars, {
       tertiary: '#727272',
       bgPrimary: 'black',
       bgSecondary: '#fff',
+      bgInactive: '#fff',
       accent:''
     },
   })

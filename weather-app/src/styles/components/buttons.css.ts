@@ -1,5 +1,5 @@
-import { vars } from '@/styles/createThemeContract.css'
-import { theme } from '@/styles/theme.css'
+import { vars } from '@/styles/common/createThemeContract.css'
+import { theme } from '@/styles/common/theme.css'
 import { recipe, RecipeVariants } from '@vanilla-extract/recipes';
 
 const base = {
@@ -33,11 +33,11 @@ const variants = {
       
 }
 export const button = recipe({
-    base: {
+    base: { //공통적으로 적용시킬것
       ...base
     },
-    variants: variants,
-    defaultVariants: {
+    variants: variants, // 상황에 따라
+    defaultVariants: { //fallback으로 사용할 variants 설정
       color: 'primary',
       size: 'medium',
       rounded: false,

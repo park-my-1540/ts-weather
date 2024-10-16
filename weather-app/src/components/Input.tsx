@@ -1,5 +1,5 @@
 import React from 'react';
-import { input, InputVariantProps } from '@/styles/inputs.css';
+import { input, InputVariantProps } from '@/styles/components/inputs.css';
 
 type ReactInputProps = React.ComponentPropsWithoutRef<'input'>;
 
