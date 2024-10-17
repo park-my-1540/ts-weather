@@ -6,6 +6,7 @@ import { none } from '@/styles/style.css'
 type ButtonProps = {
     id: string;
     children: React.ReactNode;
+    onClick: React.MouseEventHandler<HTMLAnchorElement>;
 }
 
 type RadioButtonContextType = {
@@ -17,6 +18,7 @@ const RadioButtonContext = createContext<RadioButtonContextType | null>(null);
 export const RadioButton = ({
     id,
     theme = 'blue',
+    onClick,
     children
 }: ButtonProps & Partial<RadioButtonVariantProps>) => {
 
@@ -30,7 +32,10 @@ export const RadioButton = ({
         <input type="checkbox" id={id} className={none}/>
         <a
             href="#none"
-            onClick={toggleActive}
+            onClick={(event) => {
+              if (onClick) onClick(event); // onClick이 존재할 때만 호출
+              toggleActive();  
+            }}
             className={`${isActive ? 'on' : ''} ${slider} ${radioButton({ theme })}`}>
           {children}
         </a>

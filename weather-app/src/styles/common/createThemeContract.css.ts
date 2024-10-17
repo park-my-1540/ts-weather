@@ -9,6 +9,7 @@ export const vars = createThemeContract({
     bgPrimary: '', //bgPrimary: 메인 배경 색상
     bgSecondary: '',
     bgInactive: '',
+    bgInput: '',
     accent:'', //accent: 강조 색상 (알림, 중요한 정보 표시)
   },
 })
@@ -20,18 +21,20 @@ export const lightTheme = createTheme(vars, {
       bgPrimary: colors['gray-200' as ColorKey],
       bgSecondary: colors['white' as ColorKey],
       bgInactive: colors['gray-500' as ColorKey],
-      accent: colors['white' as ColorKey]
+      bgInput: colors['white' as ColorKey],
+      accent: colors['white' as ColorKey],
     },
   })
 export const darkTheme = createTheme(vars, {
-    color: {
-      primary: 'red',
-      tertiary: '#727272',
-      bgPrimary: 'black',
-      bgSecondary: '#fff',
-      bgInactive: '#fff',
-      accent:''
-    },
+  color: {
+    primary: colors['gray-500' as ColorKey],
+    tertiary: colors['gray-100' as ColorKey],
+    bgPrimary: colors['black-100' as ColorKey],
+    bgSecondary: colors['black-200' as ColorKey],
+    bgInactive: colors['black-600' as ColorKey],
+    bgInput: colors['black-200' as ColorKey],
+    accent: colors['black-200' as ColorKey],
+  },
   })
 
   /**

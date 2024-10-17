@@ -1,11 +1,15 @@
 import React from 'react';
-import { button, ButtonVariantProps} from '@/styles/components/buttons.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { button, ButtonVariantProps, themeButton, ThemeButtonVariantProps, activeStyle } from '@/styles/components/buttons.css';
+import { none } from '@/styles/style.css'
 
 type ButtonProps = {
     onClick: React.MouseEventHandler<HTMLButtonElement>;
     children: React.ReactNode;
+}
+
+type themeButtonProps = {
+    onClick: React.MouseEventHandler<HTMLAnchorElement>;
+    toggleActive: () => void;
 }
 
 export const Button = ({
@@ -24,18 +28,16 @@ return (
     );
 };
 
-export const IconButton = ({
-    theme = 'blue',
-    color = 'primary',
-    size = 'medium',
-    rounded = false,
+export const ThemeButton = ({
+    theme,
+    isActive,
     onClick,
-    children,
-}: ButtonProps & Partial<ButtonVariantProps>) => {
+}: themeButtonProps & Partial<ThemeButtonVariantProps>) => {
     
 return (
-    <button type="button" onClick={onClick}>
-        <i className="ico-item"><FontAwesomeIcon icon={faCheck} /></i>
-    </button>
+    <a href="#none" onClick={ onClick }
+        className={`${isActive ? 'on' :''} ${themeButton({ theme })} ${activeStyle}`}>
+            <span className={none}>{theme}</span>
+    </a>
     );
 };

@@ -12,7 +12,7 @@ const base = {
 }
 const variants = {
     color: {
-        primary: { backgroundColor: vars.color.bgSecondary, color: vars.color.primary },
+        primary: { backgroundColor: vars.color.bgInput, color: vars.color.primary },
         accent: { backgroundColor: vars.color.accent, color: vars.color.primary },
         danger: { backgroundColor: 'red', color: 'white' },
     },

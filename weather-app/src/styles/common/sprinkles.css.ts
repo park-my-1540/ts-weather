@@ -6,7 +6,7 @@ import {
   const space = {
     none: 0,
     small: '4px',
-    medium: '8px',
+    medium: '10px',
     large: '16px'
     // etc.
   };
@@ -66,7 +66,9 @@ import {
     'gray-500': '#ececec',
     'gray-700': '#444',
     'white': '#fff',
-    
+    'black-100': '#212226',
+    'black-200': '#33353D',
+    'black-600': '#212023'
     // etc.
   };
   
