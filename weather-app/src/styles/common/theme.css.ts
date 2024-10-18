@@ -17,4 +17,4 @@ export const theme = {
         blue: 'linear-gradient(135deg, #80ecf7 -20%, #706aff 120%)',
         purple: 'linear-gradient(135deg, #f572c1 -20%, #6a37ab 120%)'
     }
-}
+} as const;

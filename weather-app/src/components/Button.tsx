@@ -8,8 +8,8 @@ type ButtonProps = {
 }
 
 type themeButtonProps = {
+    isActive: boolean,
     onClick: React.MouseEventHandler<HTMLAnchorElement>;
-    toggleActive: () => void;
 }
 
 export const Button = ({

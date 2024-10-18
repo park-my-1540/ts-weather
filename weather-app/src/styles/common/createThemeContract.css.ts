@@ -35,7 +35,18 @@ export const darkTheme = createTheme(vars, {
     bgInput: colors['black-200' as ColorKey],
     accent: colors['black-200' as ColorKey],
   },
-  })
+})
+export const darkThemes = createTheme(vars, {
+  color: {
+    primary: colors['gray-500' as ColorKey],
+    tertiary: colors['gray-100' as ColorKey],
+    bgPrimary: colors['black-100' as ColorKey],
+    bgSecondary: colors['black-200' as ColorKey],
+    bgInactive: colors['black-600' as ColorKey],
+    bgInput: colors['black-200' as ColorKey],
+    accent: colors['black-200' as ColorKey],
+  },
+})
 
   /**
    * primary: 주 색상 (메인 인터랙션, 버튼 등)

@@ -29,9 +29,7 @@ const variants = {
         green: { background: theme.theme.green },
         blue: { background: theme.theme.blue },
         purple: { background: theme.theme.purple },
-    
     },
-      
 }
 export const button = recipe({
     base: { //공통적으로 적용시킬것
@@ -42,6 +40,7 @@ export const button = recipe({
       color: 'primary',
       size: 'medium',
       rounded: false,
+      theme: 'blue'
     },
   });
 export type ButtonVariantProps = RecipeVariants<typeof button>;
