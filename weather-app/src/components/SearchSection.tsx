@@ -4,7 +4,7 @@ import { Button } from "@/components/Button";
 import { flexRowBetween } from "@/styles/components/flexbox.css";
 
 interface InputSectionProps {
-  activeTheme?: string;
+  activeTheme: ThemeColor;
 }
 const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => (
   <div className={flexRowBetween}>

@@ -1,18 +1,18 @@
 import { flexRowAround } from "@/styles/components/flexbox.css";
 import { ThemeButton } from "@/components/Button";
 import { ThemeColor } from "@/types/styles"
-import {SettingItem} from "@/components/SettingItem"
+import { SettingItem } from "@/components/SettingItem"
 import RadioButtonGroup from "./RadioButtonGroup";
 import { IconText } from '@/components/IconText';
 import { faCheck, faClose, faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 import { useRecoilState } from 'recoil';
-import { themeState, HighlightColor } from '@/recoil/atoms/themeAtom'; // Recoil atom import
+import { optionState, HighlightColor } from '@/recoil/atoms/optionAtom'; // Recoil atom import
 
 
 export default function ListItem() {
 
   const themes: ThemeColor[] = ['lime', 'green', 'blue', 'purple'] as const; // 정확한 타입 설정
-  const [theme, setTheme] = useRecoilState(themeState);
+  const [theme, setTheme] = useRecoilState(optionState);
 
   // darkmode or lightmode
   const toggleMode = () => {
@@ -99,7 +99,7 @@ export default function ListItem() {
           <SettingItem
             title="Choose a theme">
             <RadioButtonGroup
-              id="theme"
+              id="dark"
               theme={theme.highlightColor}
               onClick={toggleMode}
               leftLabel={<IconText icon={faSun} color='accent'/>}

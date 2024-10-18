@@ -1,17 +1,20 @@
 import { ReactNode } from 'react';
 import * as styles from "@/styles/style.css";
-import { flexRowBetween, flexRowAround } from "@/styles/components/flexbox.css";
+import { flexRowBetween } from "@/styles/components/flexbox.css";
 import { Text } from "@/components/Text";
 
 interface SettingItemProps {
   title: string;
   description?: string;
   flexDirection?:string;
-  children: ReactNode; // 다양한 UI를 자식으로 전달
+  children: ReactNode;
 }
 
 export const SettingItem = ({
-  title, description, children, flexDirection="flexRowBetween"
+  title, 
+  description, 
+  children, 
+  flexDirection = "flexRowBetween"
 }: SettingItemProps) => {
 
   return (
@@ -21,9 +24,8 @@ export const SettingItem = ({
           <Text weights='bold'>{title}</Text>
           {children}
         </div>
-        {
-          description && <Text sizes="small" colors="tertiary">{description}</Text>
-        }
+        { description && 
+            <Text sizes="small" colors="tertiary">{description}</Text> }
       </li>
     </>
   );

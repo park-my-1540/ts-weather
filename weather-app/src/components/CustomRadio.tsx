@@ -1,47 +1,52 @@
-import React from 'react';
-import { useState, createContext, useContext } from 'react';
+import React, { createContext, useContext } from 'react';
 import { radioButton, slider, RadioButtonVariantProps, left, right } from '@/styles/components/radioButton.css';
 import { none } from '@/styles/style.css'
+import { useRecoilState } from 'recoil';
+import { optionState } from '@/recoil/atoms/optionAtom';
+import { OptionType } from "@/types/styles"
 
 type ButtonProps = {
-    id: string;
+    id: keyof OptionType;
     children: React.ReactNode;
     onClick: React.MouseEventHandler<HTMLAnchorElement>;
 }
 
 type RadioButtonContextType = {
-    isActive: boolean;
-    toggleActive: () => void;
-  };
+    toggleActive: (property: keyof OptionType) => void;
+};
 
 const RadioButtonContext = createContext<RadioButtonContextType | null>(null);
 export const RadioButton = ({
     id,
-    theme = 'blue',
+    theme,
     onClick,
     children
 }: ButtonProps & Partial<RadioButtonVariantProps>) => {
 
-    const [isActive, setIsActive] = useState(true);
-    const toggleActive = () => setIsActive((prev) => !prev);
-    
-    return (
-    <RadioButtonContext.Provider value={{ isActive, toggleActive }}>
-        {isActive}
-      <label htmlFor={id}>
-        <input type="checkbox" id={id} className={none}/>
-        <a
-            href="#none"
-            onClick={(event) => {
-              if (onClick) onClick(event); // onClick이 존재할 때만 호출
-              toggleActive();  
-            }}
-            className={`${isActive ? 'on' : ''} ${slider} ${radioButton({ theme })}`}>
-          {children}
-        </a>
-      </label>
-    </RadioButtonContext.Provider>
-    );
+  const [options, setOptions] = useRecoilState(optionState);
+  const toggleActive = (property: keyof OptionType) => { 
+    setOptions((prev) => ({
+      ...prev,
+      [property]: !options[property]
+    }));
+  };
+  
+  return (
+  <RadioButtonContext.Provider value={{ toggleActive }}>
+    <label htmlFor={id}>
+      <input type="checkbox" id={id} className={none}/>
+      <a
+          href="#none"
+          onClick={(event) => {
+            if (onClick) onClick(event); // onClick이 존재할 때만 호출
+            toggleActive(id);  
+          }}
+          className={`${options[id] ? 'on' : ''} ${slider} ${radioButton({ theme })}`}>
+        {children}
+      </a>
+    </label>
+  </RadioButtonContext.Provider>
+  );
 };
 
 type SideProps = {

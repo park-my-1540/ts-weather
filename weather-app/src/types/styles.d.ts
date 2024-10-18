@@ -3,6 +3,8 @@ export type WidthSize = keyof Theme['widthSize']; //default, medium
 export type FontSize = keyof Theme['fontSize'];
 export type ThemeColor = keyof Theme['theme'];
 export type Color = keyof Theme['color'];
+export type ThemeMode = 'light' | 'dark';
+export type HighlightColor = ThemeColor;
 
 export const theme = {
     widthSize: {
@@ -24,4 +26,15 @@ export const theme = {
         purple: 'linear-gradient(135deg, #f572c1 -20%, #6a37ab 120%)'
     }
 } as const;
+
+export type OptionType = {
+    unit : boolean,
+    sun : boolean,
+    atmo : boolean,
+    wind : boolean,
+    dark : boolean,
+    mode : ThemeMode,
+    highlightColor : HighlightColor
+};
+
  

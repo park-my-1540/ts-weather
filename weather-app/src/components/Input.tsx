@@ -7,7 +7,7 @@ type InputProps = {
   id: ReactInputProps['id'];
   className?: ReactInputProps['className'];
   placeholder: string;
-  value?: string;
+  value: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
@@ -20,7 +20,6 @@ export const Input = ({
   value = '',
 }: InputProps & Partial<InputVariantProps>) => {
     
-
   return (
     <input
         type="text"
