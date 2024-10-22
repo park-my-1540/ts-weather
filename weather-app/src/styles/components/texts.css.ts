@@ -14,6 +14,9 @@ const variants = {
       color: vars.color.tertiary,
       padding: '5px 8px'
     }),
+    accent: style({
+      color: vars.color.accent,
+    }),
   },
   sizes: {
     small: style({
@@ -25,6 +28,13 @@ const variants = {
     large: style({
       fontSize: '24px',
     }),
+    largeX2: style({
+      fontSize: '40px'
+    }),
+    big: style({
+      fontSize: '100px',
+      lineHeight: '100px'
+    }),
   },
   weights: {
     normal: style({
@@ -33,7 +43,22 @@ const variants = {
     bold: style({
       fontWeight: 'bold',
     }),
-  }
+  },
+  display: {
+    inlineBlock: style({
+      display: 'inline-block'
+    })
+  },
+  vertical: {
+    textTop: style({
+      verticalAlign:'text-Top',
+    }),
+  },
+  textAlign: {
+    center: style({
+      textAlign:'center',
+    }),
+  },
 };
 
 export const text = recipe({

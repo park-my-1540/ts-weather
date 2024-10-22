@@ -8,13 +8,16 @@ type TextProps = {
 export const Text = ({
   sizes = 'medium',
   weights = 'normal',
+  vertical,
+  textAlign,
+  display,
   colors,
   children,
 }: TextProps & Partial<TextVariantProps>) => {
     
 
   return (
-    <p className={text({ colors, sizes, weights })}>
+    <p className={text({ colors, sizes, weights, display, vertical, textAlign })}>
       {children}
     </p>
   );

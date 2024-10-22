@@ -2,7 +2,7 @@ import React, { createContext, useContext } from 'react';
 import { radioButton, slider, RadioButtonVariantProps, left, right } from '@/styles/components/radioButton.css';
 import { none } from '@/styles/style.css'
 import { useRecoilState } from 'recoil';
-import { optionState, tempState } from '@/recoil/atoms/optionAtom';
+import { tempState } from '@/recoil/atoms/optionAtom';
 import { OptionType } from "@/types/styles"
 
 type ButtonProps = {
