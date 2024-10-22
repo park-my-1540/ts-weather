@@ -9,7 +9,7 @@ export const device = style({
     height:725,
     top:0,
     right:0,
-    background: vars.color.bgPrimary,
+    background: '#444',
     borderRadius: 20,
     boxShadow:'0 0 2px #000',
     transition:'.6s',
