@@ -2,7 +2,7 @@ import React, { createContext, useContext } from 'react';
 import { radioButton, slider, RadioButtonVariantProps, left, right } from '@/styles/components/radioButton.css';
 import { none } from '@/styles/style.css'
 import { useRecoilState } from 'recoil';
-import { optionState } from '@/recoil/atoms/optionAtom';
+import { optionState, tempState } from '@/recoil/atoms/optionAtom';
 import { OptionType } from "@/types/styles"
 
 type ButtonProps = {
@@ -23,11 +23,11 @@ export const RadioButton = ({
     children
 }: ButtonProps & Partial<RadioButtonVariantProps>) => {
 
-  const [options, setOptions] = useRecoilState(optionState);
+  const [tempOptions, setTempOptions] = useRecoilState(tempState);
   const toggleActive = (property: keyof OptionType) => { 
-    setOptions((prev) => ({
+    setTempOptions((prev) => ({
       ...prev,
-      [property]: !options[property]
+      [property]: !tempOptions[property]
     }));
   };
   
@@ -41,7 +41,7 @@ export const RadioButton = ({
             if (onClick) onClick(event); // onClick이 존재할 때만 호출
             toggleActive(id);  
           }}
-          className={`${options[id] ? 'on' : ''} ${slider} ${radioButton({ theme })}`}>
+          className={`${tempOptions[id] ? 'on' : ''} ${slider} ${radioButton({ theme })}`}>
         {children}
       </a>
     </label>

@@ -6,24 +6,24 @@ import RadioButtonGroup from "./RadioButtonGroup";
 import { IconText } from '@/components/IconText';
 import { faCheck, faClose, faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 import { useRecoilState } from 'recoil';
-import { optionState, HighlightColor } from '@/recoil/atoms/optionAtom'; // Recoil atom import
+import { HighlightColor, tempState } from '@/recoil/atoms/optionAtom'; // Recoil atom import
 
 
 export default function ListItem() {
 
   const themes: ThemeColor[] = ['lime', 'green', 'blue', 'purple'] as const; // 정확한 타입 설정
-  const [theme, setTheme] = useRecoilState(optionState);
+  const [tempOptions, setTempOptions] = useRecoilState(tempState);
 
   // darkmode or lightmode
   const toggleMode = () => {
-    setTheme((prev) => ({
+    setTempOptions((prev) => ({
       ...prev,
       mode: prev.mode === 'light' ? 'dark' : 'light',
     }));
   };
 
   const changeHighlightColor = (color: HighlightColor) => {
-    setTheme((prev) => ({
+    setTempOptions((prev) => ({
       ...prev,
       highlightColor: color,
     }));
@@ -38,7 +38,7 @@ export default function ListItem() {
           >
             <RadioButtonGroup
               id="unit"
-              theme={theme.highlightColor}
+              theme={tempOptions.highlightColor}
               onClick={() => console.log('Temperature Unit Selected')}
               leftLabel="°C"
               rightLabel="°F"
@@ -51,7 +51,7 @@ export default function ListItem() {
           >
             <RadioButtonGroup
               id="sun"
-              theme={theme.highlightColor}
+              theme={tempOptions.highlightColor}
               leftLabel={<IconText icon={faCheck} color='accent'/>}
               rightLabel={<IconText icon={faClose} color='accent'/>}
               onClick={() => console.log('Sunrise/Sunset Selected')}
@@ -64,7 +64,7 @@ export default function ListItem() {
           >
             <RadioButtonGroup
               id="atmo"
-              theme={theme.highlightColor}
+              theme={tempOptions.highlightColor}
               leftLabel={<IconText icon={faCheck} color='accent'/>}
               rightLabel={<IconText icon={faClose} color='accent'/>}
               onClick={() => console.log('Sunrise/Sunset Selected')}
@@ -76,7 +76,7 @@ export default function ListItem() {
           >
             <RadioButtonGroup
               id="wind"
-              theme={theme.highlightColor}
+              theme={tempOptions.highlightColor}
               leftLabel={<IconText icon={faCheck} color='accent'/>}
               rightLabel={<IconText icon={faClose} color='accent'/>}
               onClick={() => console.log('Sunrise/Sunset Selected')}
@@ -90,7 +90,7 @@ export default function ListItem() {
                 <ThemeButton
                   key={color}
                   theme={color}
-                  isActive={theme.highlightColor === color}
+                  isActive={tempOptions.highlightColor === color}
                   onClick={() => changeHighlightColor(color)}
                 />
               ))}
@@ -100,7 +100,7 @@ export default function ListItem() {
             title="Choose a theme">
             <RadioButtonGroup
               id="dark"
-              theme={theme.highlightColor}
+              theme={tempOptions.highlightColor}
               onClick={toggleMode}
               leftLabel={<IconText icon={faSun} color='accent'/>}
               rightLabel={<IconText icon={faMoon} color='accent'/>}
