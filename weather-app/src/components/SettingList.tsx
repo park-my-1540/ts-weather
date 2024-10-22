@@ -53,7 +53,7 @@ export default function ListItem() {
               id="sun"
               theme={tempOptions.highlightColor}
               leftLabel={<IconText icon={faCheck} color='accent'/>}
-              rightLabel={<IconText icon={faClose} color='accent'/>}
+              rightLabel={<IconText icon={faClose} color='tertiary'/>}
               onClick={() => console.log('Sunrise/Sunset Selected')}
             />
           </SettingItem>
@@ -66,7 +66,7 @@ export default function ListItem() {
               id="atmo"
               theme={tempOptions.highlightColor}
               leftLabel={<IconText icon={faCheck} color='accent'/>}
-              rightLabel={<IconText icon={faClose} color='accent'/>}
+              rightLabel={<IconText icon={faClose} color='tertiary'/>}
               onClick={() => console.log('Sunrise/Sunset Selected')}
             />
           </SettingItem>
@@ -78,7 +78,7 @@ export default function ListItem() {
               id="wind"
               theme={tempOptions.highlightColor}
               leftLabel={<IconText icon={faCheck} color='accent'/>}
-              rightLabel={<IconText icon={faClose} color='accent'/>}
+              rightLabel={<IconText icon={faClose} color='tertiary'/>}
               onClick={() => console.log('Sunrise/Sunset Selected')}
             />
           </SettingItem>
@@ -103,7 +103,7 @@ export default function ListItem() {
               theme={tempOptions.highlightColor}
               onClick={toggleMode}
               leftLabel={<IconText icon={faSun} color='accent'/>}
-              rightLabel={<IconText icon={faMoon} color='accent'/>}
+              rightLabel={<IconText icon={faMoon} color='tertiary'/>}
             />
           </SettingItem>
       </ul>

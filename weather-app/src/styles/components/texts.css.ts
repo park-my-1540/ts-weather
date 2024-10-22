@@ -1,4 +1,3 @@
-import { vars } from '@/styles/common/createThemeContract.css'
 import { recipe, RecipeVariants } from '@vanilla-extract/recipes';
 import { style } from '@vanilla-extract/css'
 
@@ -6,18 +5,6 @@ const base = {
     margin: '0',
 }
 const variants = {
-  colors: {
-    primary: style({
-      color: vars.color.primary
-    }),
-    tertiary: style({
-      color: vars.color.tertiary,
-      padding: '5px 8px'
-    }),
-    accent: style({
-      color: vars.color.accent,
-    }),
-  },
   sizes: {
     small: style({
       fontSize: '12px',
@@ -67,7 +54,6 @@ export const text = recipe({
     },
     variants: variants,
     defaultVariants: {
-      colors: 'primary',
       sizes: 'small',
       weights: 'normal',
     },

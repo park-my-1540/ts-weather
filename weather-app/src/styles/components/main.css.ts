@@ -17,30 +17,30 @@ export const themeVariants = styleVariants({
 });
 
 export const mainInfo = style([
-    {
-        position: 'relative',
-        width: '100%',
-        height: 70,
-        textAlign: 'center',
-    }
-  ]);
+{
+  position: 'relative',
+  width: '100%',
+  height: 70,
+  textAlign: 'center',
+}
+]);
 
 export const settingMenuIcon = style({
-        margin: 'auto',
-        width: 34,
-        height: 20,
+  margin: 'auto',
+  width: 34,
+  height: 20,
 })
 
 export const settingMenuSpan = style({
-    selectors: {
-        [`${settingMenuIcon} &`]: {
-            display: 'block',
-            width: '100%',
-            height: '3px',
-            marginBottom: '6px',
-            background: theme.color.white,
-        }
-    }
+  selectors: {
+      [`${settingMenuIcon} &`]: {
+          display: 'block',
+          width: '100%',
+          height: '3px',
+          marginBottom: '6px',
+          background: theme.color.white,
+      }
+  }
 })
 
 export const menuWidget = style({

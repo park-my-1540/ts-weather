@@ -25,7 +25,7 @@ export const SettingItem = ({
           {children}
         </div>
         { description && 
-            <Text sizes="small" colors="tertiary">{description}</Text> }
+            <Text sizes="small" color="tertiary">{description}</Text> }
       </li>
     </>
   );

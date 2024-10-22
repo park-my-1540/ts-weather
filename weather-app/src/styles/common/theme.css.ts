@@ -1,3 +1,6 @@
+import { vars } from '@/styles/common/createThemeContract.css'
+import { recipe, RecipeVariants } from '@vanilla-extract/recipes';
+
 export const theme = {
     widthSize: {
         default: '100%',
@@ -18,3 +21,20 @@ export const theme = {
         purple: 'linear-gradient(135deg, #f572c1 -20%, #6a37ab 120%)'
     }
 } as const;
+
+const variants = {
+    color: {
+      primary: {color: vars.color.primary},
+      tertiary: {color: vars.color.tertiary},
+      accent: {color: vars.color.accent},
+    }
+  };
+  
+  export const textColor = recipe({
+    variants: variants,
+    defaultVariants:{
+      color: "primary"
+    }
+  });
+  
+  export type TextColorVariantProps = RecipeVariants<typeof textColor>;

@@ -11,7 +11,7 @@ interface SettingHeaderProps {
 const SettingHeader: React.FC<SettingHeaderProps> = ({ onClose }) => (
   <div className={`${header} ${flexRowBetween}`}>
     <h2>Settings</h2>
-    <IconButton icon={faClose} color='accent' size="large" onClick={onClose} />
+    <IconButton icon={faClose} color='primary' fonstSize="24px" onClick={onClose} />
   </div>
 );
 

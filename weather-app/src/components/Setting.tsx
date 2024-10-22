@@ -1,3 +1,5 @@
+import { useRouter } from "next/router";
+import { useRecoilValue, useRecoilState } from 'recoil';
 import * as styles from "@/styles/style.css";
 import { optionState, tempState } from '@/recoil/atoms/optionAtom'; // Recoil atom import
 import { lightTheme, darkTheme } from "@/styles/common/createThemeContract.css";
@@ -6,8 +8,6 @@ import SettingHeader  from "@/components/SettingHeader";
 import SearchSection  from "@/components/SearchSection";
 import SettingList  from "@/components/SettingList";
 import { Position } from "@/components/Position";
-import { useRecoilValue, useRecoilState } from 'recoil';
-import { useRouter } from "next/router";
 
 export default function Setting() {
   const currentTheme = useRecoilValue(tempState); // 현재 테마 값 가져오기
@@ -21,7 +21,9 @@ export default function Setting() {
   };
 
   const handleGoHome = () => {
-    router.push("/"); // 프로그래밍적으로 Home 페이지로 이동
+    router.push("/");
+    setTempOptions(options);
+    setOptions(options)
   };
 
   return (
