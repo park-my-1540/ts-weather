@@ -1,7 +1,7 @@
 // App.tsx
 import { device } from "@/styles/style.css";
 import { motion } from "framer-motion";
-import Setting from "@/components/Setting"
+import Setting from "@/components/setting/Setting"
 export default function Home() {
   return (
     <>

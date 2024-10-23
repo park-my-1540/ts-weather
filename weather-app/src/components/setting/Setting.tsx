@@ -4,9 +4,9 @@ import * as styles from "@/styles/style.css";
 import { optionState, tempState } from '@/recoil/atoms/optionAtom'; // Recoil atom import
 import { lightTheme, darkTheme } from "@/styles/common/createThemeContract.css";
 import { Button } from "@/components/Button";
-import SettingHeader  from "@/components/SettingHeader";
-import SearchSection  from "@/components/SearchSection";
-import SettingList  from "@/components/SettingList";
+import SettingHeader  from "@/components/setting/SettingHeader";
+import SearchSection  from "@/components/setting/SearchSection";
+import SettingList  from "@/components/setting/SettingList";
 import { Position } from "@/components/Position";
 
 export default function Setting() {

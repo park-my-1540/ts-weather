@@ -72,3 +72,28 @@ export const buttonWrap = style([
     textAlign: 'center',
   }
 ]);
+
+export const width100 = style({
+  width: '100%',
+})
+
+export const weatherCont = style({
+  width: '100%',
+  background: 'hsla(0, 0%, 100%, .2)',
+  color: vars.color.accent,
+})
+
+export const weatherIcon = style({
+  textAlign: 'center',
+  padding: '0 20px',
+  height: 80,
+})
+
+// weatherCont 클래스가 부모에 있을 때만 border 추가
+export const conditionalBorder = style({
+  selectors: {
+    [`${weatherCont} &`]: {
+      boxShadow: '0 -1px 0 rgba(0, 0, 0, .05), inset 0 1px 0 hsla(0, 0%, 100%, .1)',
+    },
+  },
+});

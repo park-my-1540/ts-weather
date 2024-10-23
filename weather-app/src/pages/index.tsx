@@ -1,6 +1,6 @@
 // App.tsx
 import { device } from "@/styles/style.css";
-import Main from "@/components/Main/Main"
+import Main from "@/components/main/Main"
 import { motion } from "framer-motion";
 export default function Home() {
   return (

@@ -9,11 +9,12 @@ type PositionProps = {
     bottom?: number | string;
     left?: number | string;
     children: React.ReactNode;
+    style?: React.CSSProperties;
 };
 
 export const Position: React.FC<PositionProps> = ({
     position = 'static',
-    className,
+    className = '',
     top,
     right,
     bottom,

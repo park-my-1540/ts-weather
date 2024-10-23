@@ -4,6 +4,7 @@ import { textColor, TextColorVariantProps } from '@/styles/common/theme.css';
 
 type TextProps = {
   children: React.ReactNode;
+  style?: React.CSSProperties;
 };
 
 export const Text = ({
@@ -14,10 +15,11 @@ export const Text = ({
   display,
   color,
   children,
+  ...rest
 }: TextProps & Partial<TextVariantProps & TextColorVariantProps>) => {
 
   return (
-    <p className={ `${text({sizes, weights, display, vertical, textAlign })} ${textColor({color})}`}>
+    <p {...rest} className={ `${text({sizes, weights, display, vertical, textAlign })} ${textColor({color})}`}>
       {children}
     </p>
   );

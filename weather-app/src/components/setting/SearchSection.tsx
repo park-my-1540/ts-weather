@@ -1,13 +1,13 @@
 import { ThemeColor } from "@/types/styles"
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
-import { flexRowBetween } from "@/styles/components/flexbox.css";
+import  Flex  from "@/components/Flex";
 
 interface InputSectionProps {
   activeTheme: ThemeColor;
 }
 const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => (
-  <div className={flexRowBetween}>
+    <Flex direction="row" align="center" justify="between" gap="small">
     <Input 
       id="1"
       size="medium"
@@ -17,7 +17,7 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => (
     <Button theme={ activeTheme } color="primary" size="medium" rounded onClick={() => alert('Clicked!')}>
       Update
     </Button>
-  </div>
+  </Flex>
 );
 
 export default InputSection;
