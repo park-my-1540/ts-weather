@@ -38,7 +38,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
 }) => {
   return (
     <button type="button" onClick={onClick}>
-      <FontAwesomeIcon icon={icon} style={{ fonstSize }} className={textColor({color})}/>
+      <FontAwesomeIcon icon={icon} style={{ fontSize : fonstSize }} className={textColor({color})}/>
     </button>
   );
 };

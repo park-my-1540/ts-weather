@@ -16,11 +16,11 @@ const variants = {
       fontSize: '24px',
     }),
     largeX2: style({
-      fontSize: '40px'
+      fontSize: '50px'
     }),
     big: style({
-      fontSize: '100px',
-      lineHeight: '100px'
+      fontSize: '110px',
+      lineHeight: '110px'
     }),
   },
   weights: {
