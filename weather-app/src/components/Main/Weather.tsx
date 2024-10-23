@@ -7,6 +7,7 @@ import { useRecoilState } from 'recoil';
 import { faChevronDown, faTint, faWeight, faSmog, faSun, faCloud, faClock, faThermometerQuarter, faCompass, faWind } from '@fortawesome/free-solid-svg-icons'
 import { Text } from "@/components/Text";
 import  Flex  from "@/components/Flex";
+import  Swiper  from "@/components/Swiper";
 import { Position } from "@/components/Position";
 import { width100, weatherCont, weatherIcon, conditionalBorder } from "@/styles/style.css";
 
@@ -98,6 +99,54 @@ export default function Main() {
                             </div>
                         </Flex>
                     </Flex>
+
+                    <Flex direction="column" align="center" justify="between" gap="small" className={conditionalBorder}>
+                        <Text sizes="medium" color="accent" textAlign='center' style={{'padding' : '8px 0'}}>8 Days Forecast</Text>
+                    </Flex>
+
+                    <Flex direction="column" align="center" justify="between" gap="small" className={conditionalBorder}>
+                        <Swiper>
+                            <div className={weatherIcon} key={1}>
+                                <IconText icon={faThermometerQuarter} color='accent' fontSize='26px'/>
+                                <Text sizes="medium" color="accent">1Sunrise <br/> 63%</Text>
+                            </div>
+                            <div className={weatherIcon}>
+                                <IconText icon={faCompass} color='accent' fontSize='26px'/>
+                                <Text sizes="medium" color="accent">2Humidity<br/> 63%</Text>
+                            </div>
+                            <div className={weatherIcon}>
+                                <IconText icon={faWind} color='accent' fontSize='26px'/>
+                                <Text sizes="medium" color="accent">3Humidity<br/> 63%</Text>
+                            </div>
+                            <div className={weatherIcon}>
+                                <IconText icon={faThermometerQuarter} color='accent' fontSize='26px'/>
+                                <Text sizes="medium" color="accent">4Sunrise <br/> 63%</Text>
+                            </div>
+                            <div className={weatherIcon}>
+                                <IconText icon={faCompass} color='accent' fontSize='26px'/>
+                                <Text sizes="medium" color="accent">5Humidity<br/> 63%</Text>
+                            </div>
+                            <div className={weatherIcon}>
+                                <IconText icon={faWind} color='accent' fontSize='26px'/>
+                                <Text sizes="medium" color="accent">6Humidity<br/> 63%</Text>
+                            </div>
+                            <div className={weatherIcon}>
+                                <IconText icon={faThermometerQuarter} color='accent' fontSize='26px'/>
+                                <Text sizes="medium" color="accent">7Sunrise <br/> 63%</Text>
+                            </div>
+                            <div className={weatherIcon}>
+                                <IconText icon={faCompass} color='accent' fontSize='26px'/>
+                                <Text sizes="medium" color="accent">8Humidity<br/> 63%</Text>
+                            </div>
+                            <div className={weatherIcon}>
+                                <IconText icon={faWind} color='accent' fontSize='26px'/>
+                                <Text sizes="medium" color="accent">9Humidity<br/> 63%</Text>
+                            </div>
+                        </Swiper>
+
+                    </Flex>
+
+
                 </div>
 
             </motion.div>
