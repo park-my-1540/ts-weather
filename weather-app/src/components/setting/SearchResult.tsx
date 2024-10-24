@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import { Text, TextLink } from "@/components/Text";
 import { IconText } from "../IconText";
 import { faSearch, faClose } from '@fortawesome/free-solid-svg-icons'
@@ -5,11 +6,20 @@ import  Flex  from "@/components/Flex";
 import { sprinkles } from "@/styles/common/sprinkles.css"; // sprinkles import
 
 interface SearchResultProps {
-  isOpen : boolean
+  isOpen : boolean,
   }
 const SearchResult = ({
-  isOpen
-  }: SearchResultProps) => {
+  isOpen,
+}: SearchResultProps) => {
+
+    const [recentCitys, setRecentCitys] = useState<{ city: string; date: string }[]>([]);
+    // localStorage에서 값을 가져옴.
+    useEffect(() => {
+      const storedData = localStorage.getItem('searchData');
+      if (storedData) {
+        setRecentCitys(JSON.parse(storedData));
+      }
+    }, []);
   
     return (
       isOpen && (
@@ -22,12 +32,14 @@ const SearchResult = ({
             </div>
 
             <ul className={`${sprinkles({ paddingTop: 'large' })}`}>
-              <li>
-                <Flex direction="row" align="center" justify="between" gap="small" className="title">
-                  <TextLink color="textInfo" sizes ="smallmedium"><IconText icon={faSearch} style={{paddingRight : 5}}></IconText>Seoul</TextLink>
-                  <Text color="textInfo" sizes="medium">10.11<IconText style={{paddingLeft : 5}} color="textInfo" icon={faClose}></IconText></Text>
-                </Flex>
-              </li>
+              { recentCitys.map((item, index)=> (
+                  <li key={index}>
+                    <Flex direction="row" align="center" justify="between" gap="small" className="title">
+                      <TextLink color="textInfo" sizes ="smallmedium"><IconText icon={faSearch} style={{paddingRight : 5}}></IconText>{item.city}</TextLink>
+                      <Text color="textInfo" sizes="medium">{item.date}<IconText style={{paddingLeft : 5}} color="textInfo" icon={faClose}></IconText></Text>
+                    </Flex>
+                  </li>
+              ))}
             </ul>
 
             <div className={`${sprinkles({ paddingY: 'large' })}`}>
