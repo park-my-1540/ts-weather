@@ -32,13 +32,12 @@ export default function Widget() {
             <Text sizes="large" color="accent" textAlign="center">Rain
                 <IconText icon={faSun} fontSize="50px" color='accent' style={{'marginLeft':8}}/>
             </Text>
-            <Text sizes="big" color="accent" weights="bold">15
-                <Text sizes="largeX2" 
-                        weights="bold" 
-                        vertical="textTop" 
-                        display="inlineBlock" 
-                        color="accent">ºC</Text>
-            </Text>
+            <Text sizes="big" color="accent" vertical="textTop" display="inlineBlock" weights="bold">15</Text>
+            <Text sizes="largeX2" 
+                    weights="bold" 
+                    vertical="textTop" 
+                    display="inlineBlock" 
+                    color="accent">ºC</Text>
         </motion.div>
     </Position>
 )

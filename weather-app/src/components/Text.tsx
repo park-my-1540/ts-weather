@@ -24,3 +24,21 @@ export const Text = ({
     </p>
   );
 };
+
+export const TextLink = ({
+  sizes = 'medium',
+  weights = 'normal',
+  vertical,
+  textAlign,
+  display,
+  color,
+  children,
+  ...rest
+}: TextProps & Partial<TextVariantProps & TextColorVariantProps>) => {
+
+  return (
+    <a href='#none' {...rest} className={ `${text({sizes, weights, display, vertical, textAlign })} ${textColor({color})}`}>
+      {children}
+    </a>
+  );
+};

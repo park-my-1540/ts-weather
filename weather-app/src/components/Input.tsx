@@ -9,11 +9,13 @@ type InputProps = {
   placeholder: string;
   value: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onClick?: React.MouseEventHandler<HTMLInputElement>;
 }
 
 export const Input = ({
   id,
   onChange,
+  onClick,
   color = 'primary',
   size = 'medium',
   placeholder = '입력해주세요.',
@@ -25,6 +27,7 @@ export const Input = ({
         type="text"
         id={id}
         onChange={onChange}
+        onClick={onClick}
         placeholder={placeholder}
         value={value}
         className={input({ color, size})}

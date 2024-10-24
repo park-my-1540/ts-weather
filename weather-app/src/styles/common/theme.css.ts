@@ -27,6 +27,8 @@ const variants = {
       primary: {color: vars.color.primary},
       tertiary: {color: vars.color.tertiary},
       accent: {color: vars.color.accent},
+      textSecondary: {color: vars.color.textSecondary},
+      textInfo: {color: vars.color.textInfo},
     }
   };
   

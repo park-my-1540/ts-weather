@@ -11,6 +11,8 @@ export const vars = createThemeContract({
     bgInactive: '',
     bgInput: '',
     accent:'', //accent: 강조 색상 (알림, 중요한 정보 표시)
+    textSecondary:'', //accent: 강조 색상 (알림, 중요한 정보 표시)
+    textInfo:'', //accent: 강조 색상 (알림, 중요한 정보 표시)
   },
 })
 
@@ -23,6 +25,8 @@ export const lightTheme = createTheme(vars, {
       bgInactive: colors['gray-500' as ColorKey],
       bgInput: colors['white' as ColorKey],
       accent: colors['white' as ColorKey],
+      textSecondary: colors['gray-600' as ColorKey],
+      textInfo: colors['gray-800' as ColorKey],
     },
   })
 export const darkTheme = createTheme(vars, {
@@ -34,17 +38,8 @@ export const darkTheme = createTheme(vars, {
     bgInactive: colors['black-600' as ColorKey],
     bgInput: colors['black-200' as ColorKey],
     accent: colors['black-200' as ColorKey],
-  },
-})
-export const darkThemes = createTheme(vars, {
-  color: {
-    primary: colors['gray-500' as ColorKey],
-    tertiary: colors['gray-100' as ColorKey],
-    bgPrimary: colors['black-100' as ColorKey],
-    bgSecondary: colors['black-200' as ColorKey],
-    bgInactive: colors['black-600' as ColorKey],
-    bgInput: colors['black-200' as ColorKey],
-    accent: colors['black-200' as ColorKey],
+    textSecondary: colors['gray-600' as ColorKey],
+    textInfo: colors['gray-800' as ColorKey],
   },
 })
 
