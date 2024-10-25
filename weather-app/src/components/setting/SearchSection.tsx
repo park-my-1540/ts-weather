@@ -18,7 +18,6 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
   const [word, setWord] = useState(''); // input value
   const [searchState, setSearchState] = useRecoilState(localStorageState);
   const [isValid, setIsValid] = useState(true); // 유효성 검사 상태
-
   const [recentCitys, setRecentCitys] = useState<{ city: string; date: string }[]>([]);
 
   useEffect(() => {
@@ -28,11 +27,19 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
     }
   }, []);
 
+  const date = () => {
+    const today = new Date();
+    const month = today.getMonth() + 1; // 월
+    const date = today.getDate(); // 날짜
+
+    return `${month}.${date}`
+  }
+
   // city update 후 localstorage, searchState 저장
   const update = () => {
     const newVal = {
       city : word,
-      date : '10.11'
+      date : date()
     }
     
     const updatedLocalStorage = [...searchState, newVal];
