@@ -19,23 +19,31 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
   const [searchState, setSearchState] = useRecoilState(localStorageState);
   const [isValid, setIsValid] = useState(true); // 유효성 검사 상태
 
+  const [recentCitys, setRecentCitys] = useState<{ city: string; date: string }[]>([]);
+
+  useEffect(() => {
+    const storedData = localStorage.getItem('searchData');
+    if (storedData) {
+      setRecentCitys(JSON.parse(storedData));
+    }
+  }, []);
+
   // city update 후 localstorage, searchState 저장
   const update = () => {
     const newVal = {
       city : word,
       date : '10.11'
     }
-    const updatedLocalStorage = [...searchState.localStorage, newVal];
-
-    setSearchState((prev) => ({
-      ...prev,
-      localStorage: updatedLocalStorage,
-    }));
-
+    
+    const updatedLocalStorage = [...searchState, newVal];
+    
     localStorage.setItem(
-      searchState.localStorageKey,
+      "searchData",
       JSON.stringify(updatedLocalStorage)
     );
+
+    setSearchState(updatedLocalStorage)
+    setIsOpen(false)
   };
 
   useEffect(() => {
@@ -58,7 +66,7 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
       </Button>
 
       <Position position="absolute" top={70} className={searchResultBox}>
-        <SearchResult isOpen={isOpen} word = {word}/>
+        <SearchResult isOpen={isOpen}/>
       </Position>
     </Flex>
   );

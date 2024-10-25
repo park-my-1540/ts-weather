@@ -26,6 +26,7 @@ export const Input = ({
     <input
         type="text"
         id={id}
+        autoComplete='off'
         onChange={onChange}
         onClick={onClick}
         placeholder={placeholder}
