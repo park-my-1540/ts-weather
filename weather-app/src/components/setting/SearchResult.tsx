@@ -13,20 +13,17 @@ interface SearchResultProps {
 const SearchResult = ({
   isOpen,
 }: SearchResultProps) => {
-    const searchStateAtom = useRecoilValue(localStorageState);
-    const [searchState, setSearchState] = useRecoilState(localStorageState);
-    const [recentCitys, setRecentCitys] = useState<{ city: string; date: string }[]>([]);
+  const searchStateAtom = useRecoilValue(localStorageState);
+  const [searchState, setSearchState] = useRecoilState(localStorageState);
+  const [recentCitys, setRecentCitys] = useState<{ city: string; date: string }[]>([]);
+  // localStorage에서 값을 가져옴.
+  useEffect(() => {
+    const storedData = localStorage.getItem('searchData');
+    if (storedData) {
+      setRecentCitys(JSON.parse(storedData));
+    }
+  }, [searchStateAtom]);
 
-    useEffect(() => {
-      const storedData = localStorage.getItem('searchData');
-      if (storedData) {
-        setRecentCitys(JSON.parse(storedData));
-      }
-    }, [searchStateAtom]);
-
-    useEffect(() => {
-      setSearchState(recentCitys)
-    }, [recentCitys]);
 
     const deleteHistory = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       const targetItem = e.currentTarget.closest('li')?.getAttribute('data-city');
