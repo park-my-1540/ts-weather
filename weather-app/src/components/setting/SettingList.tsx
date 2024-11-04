@@ -34,8 +34,7 @@ export default function ListItem() {
       <ul>
           <SettingItem
             title="Temperature Unit"
-            description="Choose between ºC or ºF."
-          >
+            description="Choose between ºC or ºF.">
             <RadioButtonGroup
               id="unit"
               theme={tempOptions.highlightColor}
@@ -47,8 +46,7 @@ export default function ListItem() {
 
           <SettingItem
             title="Sunrise/Sunset"
-            description="Humidity, pressure and visibility of the atmosphere."
-          >
+            description="Humidity, pressure and visibility of the atmosphere.">
             <RadioButtonGroup
               id="sun"
               theme={tempOptions.highlightColor}
@@ -60,8 +58,7 @@ export default function ListItem() {
 
           <SettingItem
             title="Atmospheric Conditions"
-            description="Sunset/Sunrise hours and total hours of light."
-          >
+            description="Sunset/Sunrise hours and total hours of light.">
             <RadioButtonGroup
               id="atmo"
               theme={tempOptions.highlightColor}
@@ -72,8 +69,7 @@ export default function ListItem() {
           </SettingItem>
           <SettingItem
             title="Wind Conditions"
-            description="Chill, direction and the speed of the wind."
-          >
+            description="Chill, direction and the speed of the wind.">
             <RadioButtonGroup
               id="wind"
               theme={tempOptions.highlightColor}
@@ -85,7 +81,7 @@ export default function ListItem() {
           <SettingItem
             flexDirection="flexRowAround"
             title="Choose a theme">
-            <div className={flexRowAround}>
+            <div className={flexRowAround} style={{'padding' : '8px 0'}}>
               {themes.map((color) => (
                 <ThemeButton
                   key={color}
@@ -97,7 +93,7 @@ export default function ListItem() {
             </div>
           </SettingItem>
           <SettingItem
-            title="Choose a theme">
+            title="Choose a dark or light">
             <RadioButtonGroup
               id="dark"
               theme={tempOptions.highlightColor}

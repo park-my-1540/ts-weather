@@ -5,7 +5,7 @@ import { faSearch, faClose } from '@fortawesome/free-solid-svg-icons'
 import  Flex  from "@/components/Flex";
 import { sprinkles } from "@/styles/common/sprinkles.css"; // sprinkles import
 import { localStorageState } from "@/recoil/atoms/searchAtom";
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 
 interface SearchResultProps {
   isOpen : boolean,
@@ -14,7 +14,6 @@ const SearchResult = ({
   isOpen,
 }: SearchResultProps) => {
   const searchStateAtom = useRecoilValue(localStorageState);
-  const [searchState, setSearchState] = useRecoilState(localStorageState);
   const [recentCitys, setRecentCitys] = useState<{ city: string; date: string }[]>([]);
   // localStorage에서 값을 가져옴.
   useEffect(() => {

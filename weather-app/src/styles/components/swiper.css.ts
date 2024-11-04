@@ -1,4 +1,4 @@
-import { styleVariants, style } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 
 export const container = style({
     overflow: 'hidden',

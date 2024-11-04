@@ -1,9 +1,10 @@
 import { ReactNode } from 'react';
 import { ThemeColor } from '@/types/styles';
 import { RadioButton } from "@/components/CustomRadio";
+import { OptionType } from "@/types/styles";
 
 interface RadioButtonGroupProps {
-    id: string;
+    id: keyof OptionType;
     theme: ThemeColor;
     onClick: () => void;
     leftLabel: ReactNode;

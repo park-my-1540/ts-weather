@@ -19,7 +19,7 @@ export default function Main({ items, weatherRef } : WidgetProps) {
     const slideUpDown = useAnimation();
     const rotate = useAnimation(); 
     const [isOpen, setIsOpen] = useRecoilState(mainState);
-    const [tempOptions, setTempOptions] = useRecoilState(optionState);
+    const [tempOptions, ] = useRecoilState(optionState);
     const [refHeight, setRefHeight] = useState(0);
 
     // 공통 애니메이션 옵션 설정

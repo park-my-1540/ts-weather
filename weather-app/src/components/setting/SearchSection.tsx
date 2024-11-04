@@ -18,7 +18,7 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
   const [word, setWord] = useState(''); // input value
   const [searchState, setSearchState] = useRecoilState(localStorageState);
   const [isValid, setIsValid] = useState(true); // 유효성 검사 상태
-  const [recentCitys, setRecentCitys] = useState<{ city: string; date: string }[]>([]);
+  const [, setRecentCitys] = useState<{ city: string; date: string }[]>([]);
 
   useEffect(() => {
     const storedData = localStorage.getItem('searchData');

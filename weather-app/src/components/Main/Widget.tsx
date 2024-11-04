@@ -13,7 +13,7 @@ import { WidgetProps } from "@/types/weather";
 export default function Widget({ items, weatherRef } : WidgetProps) {
     const isOpen = useRecoilValue(mainState); // 현재 테마 값 가져오기
     const widgetControl = useAnimation();
-    const [tempOptions, setTempOptions] = useRecoilState(optionState);
+    const [tempOptions, ] = useRecoilState(optionState);
     const animationSettings = { type: 'spring', damping: 20 };
     const moveToCenter = useCallback(() => {
         widgetControl.start({ scale : 1, x:0, y:0, transition: animationSettings });
@@ -25,7 +25,7 @@ export default function Widget({ items, weatherRef } : WidgetProps) {
         // weatherRef.current가 null인지 확인
         if (weatherRef.current) {
             const gap = weatherRef.current.clientHeight / 100; 
-            const scaleValue = Math.max(0, 1 - gap / 10); // scale을 gap을 기준으로 반비례적으로 설정 gap이 커질수록 scale은 작아짐
+            const scaleValue = Math.max(0, 1 - gap / 22); // scale을 gap을 기준으로 반비례적으로 설정 gap이 커질수록 scale은 작아짐
     
             widgetControl.start({ 
                 scale: scaleValue, 
