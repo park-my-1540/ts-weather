@@ -20,7 +20,7 @@ export const convertTo12HourFormat = (dateStr: number): string => {
   return formattedTime;
 };
 
-export const setWeatherIcon = (props) => {
+export const setWeatherIcon = (props:string) => {
     let _icon;
     switch (props) {
       case "Clear":

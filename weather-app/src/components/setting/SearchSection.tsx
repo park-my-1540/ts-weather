@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { ThemeColor } from "@/types/styles"
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
@@ -8,6 +8,7 @@ import { Position } from "@/components/Position";
 import { searchResultBox } from "@/styles/components/search.css";
 import { localStorageState } from "@/recoil/atoms/searchAtom";
 import { useRecoilState } from 'recoil';
+import citylist from "@/json/citylist.json";
 
 interface InputSectionProps {
   activeTheme: ThemeColor;
@@ -17,6 +18,7 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [word, setWord] = useState(''); // input value
   const [searchState, setSearchState] = useRecoilState(localStorageState);
+  const [filterList, setFilterList] = useState<string[]>([]);
   const [isValid, setIsValid] = useState(true); // 유효성 검사 상태
   const [, setRecentCitys] = useState<{ city: string; date: string }[]>([]);
 
@@ -27,21 +29,26 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
     }
   }, []);
 
-  const date = () => {
+  // 입력 값이 없으면 버튼 비활성화, 닫기
+  useEffect(() => {
+    setIsValid(isNotEmpty(word));
+    setIsOpen(isNotEmpty(word))
+  }, [word]);
+
+  const date = useCallback(() => {
     const today = new Date();
-    const month = today.getMonth() + 1; // 월
-    const date = today.getDate(); // 날짜
+    return `${today.getMonth() + 1}.${today.getDate()}`
+  },[])
 
-    return `${month}.${date}`
-  }
-
-  // city update 후 localstorage, searchState 저장
+  const isNotEmpty = useCallback((word: string) => word.trim().length > 0, []); 
+  /**
+   * 로컬 스토리지 업데이트 후 인풋 닫기
+   */
   const update = () => {
     const newVal = {
       city : word,
       date : date()
     }
-    
     const updatedLocalStorage = [...searchState, newVal];
     
     localStorage.setItem(
@@ -53,10 +60,43 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
     setIsOpen(false)
   };
 
-  useEffect(() => {
-    // 입력 값이 없으면 버튼 비활성화
-    setIsValid(word.trim().length > 0);
-  }, [word]);
+/**
+ * 이 함수는 어떤 작업을 수행합니다.
+ * @param {string} word - 처리할 단어
+ * @returns {void}
+ */
+  const filterWord = useCallback((word:string) => {
+    setWord(word);
+
+    let array:string[] = [];
+    const filterCity = citylist.filter(function (element) {
+      //해당 단어와 매치된 도시
+      const lowerEle = element.name.toLowerCase();
+      const lowerVal = word.toLowerCase();
+      return lowerEle.includes(lowerVal);
+    });
+    if (filterCity) {
+      filterCity.map((city) => {
+        const name = city.name;
+        const value = word.toLowerCase();
+
+        if(isNotEmpty(word) && name.toLowerCase().startsWith(value, 0)) {
+          array.push(name);
+          array = array.filter((element, index) => array.indexOf(element) === index);//중복 제거
+        }
+        setFilterList(array);
+      })
+    }
+  },[word])
+
+  const clickInput = useCallback(() => {
+    if(isNotEmpty(word)) {
+      setIsOpen((prev) => !prev)
+    }else{
+      setIsOpen(false)
+      setFilterList([]);
+    }
+  },[word])
 
   return (
     <Flex direction="row" align="center" justify="between" gap="small">
@@ -65,15 +105,15 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
         value = {word}
         size="medium"
         placeholder="Search City ex) Seoul"
-        onChange={(e) => setWord(e.currentTarget.value)}
-        onClick={() => setIsOpen((prev) => !prev)}
+        onChange={(e) => filterWord(e.currentTarget.value)}
+        onClick={clickInput}
       />
       <Button theme={activeTheme} color="primary" size="medium" disabled={!isValid} rounded onClick={() => update()}>
         Update
       </Button>
 
       <Position position="absolute" top={70} className={searchResultBox}>
-        <SearchResult isOpen={isOpen}/>
+        <SearchResult isOpen={isOpen} list={filterList}/>
       </Position>
     </Flex>
   );

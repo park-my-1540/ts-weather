@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "doc": "jsdoc -c jsdoc.json"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.59.16",
@@ -30,6 +31,7 @@
     "eslint": "^8.57.1",
     "eslint-config-next": "14.2.15",
     "globals": "^15.11.0",
+    "jsdoc": "^4.0.4",
     "prettier": "^3.3.3",
     "typescript": "^5",
     "typescript-eslint": "^8.8.1"

@@ -1,0 +1,11 @@
+{
+    "source": {
+        "include": ["src"],
+        "includePattern": ".+\\.tsx?$",
+        "excludePattern": "(node_modules|\\.git)"
+    },
+    "opts": {
+        "destination": "./docs",
+        "recurse": true
+    }
+}

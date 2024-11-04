@@ -9,9 +9,11 @@ import { useRecoilValue } from 'recoil';
 
 interface SearchResultProps {
   isOpen : boolean,
+  list: string[]
   }
 const SearchResult = ({
   isOpen,
+  list
 }: SearchResultProps) => {
   const searchStateAtom = useRecoilValue(localStorageState);
   const [recentCitys, setRecentCitys] = useState<{ city: string; date: string }[]>([]);
@@ -41,14 +43,29 @@ const SearchResult = ({
     return (
       isOpen && (
         <div className={`${sprinkles({ padding: 'large' })}`}>
-            <div className="list recent">
+
+
+            <ul className={`${sprinkles({ paddingTop: 'large' })}`}>
+              { list.map((item, index)=> (
+                  <li key={index} data-city={item}>
+                    <Flex direction="row" align="center" justify="between" gap="small" className="title">
+                      <TextLink onClick={deleteAll} color="textInfo" sizes ="mediumlarge"><IconText icon={faSearch} style={{paddingRight : 5}}></IconText>{item}</TextLink>
+                      <Text color="textInfo" sizes="medium"><IconButton style={{paddingLeft : 5}} color="textInfo" icon={faClose} onClick = {(e)=> deleteHistory(e)}></IconButton></Text>
+                    </Flex>
+                  </li>
+              ))}
+            </ul>
+
+
+
+            {/* <div className="list recent">
                 <Flex direction="row" align="center" justify="between" gap="small" className="title">
                     <Text color="textSecondary">최근검색어</Text>
                     <TextLink color="tertiary" sizes ="small" onClick={deleteAll}>전체삭제</TextLink>
                 </Flex>
-            </div>
+            </div> */}
 
-            <ul className={`${sprinkles({ paddingTop: 'large' })}`}>
+            {/* <ul className={`${sprinkles({ paddingTop: 'large' })}`}>
               { recentCitys.map((item, index)=> (
                   <li key={index} data-city={item.city}>
                     <Flex direction="row" align="center" justify="between" gap="small" className="title">
@@ -57,17 +74,17 @@ const SearchResult = ({
                     </Flex>
                   </li>
               ))}
-            </ul>
+            </ul> */}
 
             {
-              recentCitys.length < 1 && (
-              <div className={`${sprinkles({ paddingY: 'large' })}`}>
-                <Text textAlign="center" color="textSecondary">
-                  일치하는 검색어가 없습니다.<br/>
-                  검색어를 확인해주세요.
-                </Text>
-              </div>
-              )
+              // recentCitys.length < 1 && (
+              // <div className={`${sprinkles({ paddingY: 'large' })}`}>
+              //   <Text textAlign="center" color="textSecondary">
+              //     일치하는 검색어가 없습니다.<br/>
+              //     검색어를 확인해주세요.
+              //   </Text>
+              // </div>
+              // )
             }
         </div>
       )
