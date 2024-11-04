@@ -14,7 +14,7 @@ export default function Main() {
     const weatherRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-      fetchWeatherList("metric", "Seoul").then(({ items }) => {
+      fetchWeatherList("metric", "Seoul", 126, 36).then(({ items }) => {
         setItems(items);
       });
     }, []);

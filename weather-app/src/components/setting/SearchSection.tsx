@@ -9,6 +9,8 @@ import { searchResultBox } from "@/styles/components/search.css";
 import { localStorageState } from "@/recoil/atoms/searchAtom";
 import { useRecoilState } from 'recoil';
 import citylist from "@/json/citylist.json";
+import { isEmpty } from "@/util/util";
+import { useUpdateWeatherItems } from '@/action/weatherAction'; // 방금 만든 훅 import
 
 interface InputSectionProps {
   activeTheme: ThemeColor;
@@ -21,6 +23,7 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
   const [filterList, setFilterList] = useState<string[]>([]);
   const [isValid, setIsValid] = useState(true); // 유효성 검사 상태
   const [, setRecentCitys] = useState<{ city: string; date: string }[]>([]);
+  const { updateWeatherItems } = useUpdateWeatherItems(); // 훅 사용하기
 
   useEffect(() => {
     const storedData = localStorage.getItem('searchData');
@@ -31,16 +34,15 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
 
   // 입력 값이 없으면 버튼 비활성화, 닫기
   useEffect(() => {
-    setIsValid(isNotEmpty(word));
-    setIsOpen(isNotEmpty(word))
-  }, [word]);
+    setIsValid(!isEmpty(word));
+    setIsOpen(!isEmpty(word) && !isEmpty(filterList))
+  }, [filterList]);
 
   const date = useCallback(() => {
     const today = new Date();
     return `${today.getMonth() + 1}.${today.getDate()}`
   },[])
 
-  const isNotEmpty = useCallback((word: string) => word.trim().length > 0, []); 
   /**
    * 로컬 스토리지 업데이트 후 인풋 닫기
    */
@@ -58,6 +60,12 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
 
     setSearchState(updatedLocalStorage)
     setIsOpen(false)
+
+    const match = citylist.filter((item)=> word === item.name)
+    const lon = match[0].coord.lon;
+    const lat = match[0].coord.lat;
+
+    updateWeatherItems("metric", word ,lon,lat)
   };
 
 /**
@@ -80,7 +88,7 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
         const name = city.name;
         const value = word.toLowerCase();
 
-        if(isNotEmpty(word) && name.toLowerCase().startsWith(value, 0)) {
+        if(!isEmpty(word) && name.toLowerCase().startsWith(value, 0)) {
           array.push(name);
           array = array.filter((element, index) => array.indexOf(element) === index);//중복 제거
         }
@@ -90,7 +98,7 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
   },[word])
 
   const clickInput = useCallback(() => {
-    if(isNotEmpty(word)) {
+    if(!isEmpty(word)) {
       setIsOpen((prev) => !prev)
     }else{
       setIsOpen(false)
@@ -113,7 +121,7 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
       </Button>
 
       <Position position="absolute" top={70} className={searchResultBox}>
-        <SearchResult isOpen={isOpen} list={filterList}/>
+        <SearchResult setWord={setWord} setIsOpen={setIsOpen} isOpen={isOpen} list={filterList}/>
       </Position>
     </Flex>
   );

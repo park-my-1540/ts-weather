@@ -9,11 +9,15 @@ import { useRecoilValue } from 'recoil';
 
 interface SearchResultProps {
   isOpen : boolean,
-  list: string[]
+  list: string[],
+  setWord: React.Dispatch<React.SetStateAction<string>>,
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
   }
 const SearchResult = ({
   isOpen,
-  list
+  list,
+  setWord,
+  setIsOpen
 }: SearchResultProps) => {
   const searchStateAtom = useRecoilValue(localStorageState);
   const [recentCitys, setRecentCitys] = useState<{ city: string; date: string }[]>([]);
@@ -39,22 +43,25 @@ const SearchResult = ({
       localStorage.removeItem("searchData");
       setRecentCitys([]); //해야 컴포넌트 리렌더링 된답니다.
     }
+
+    const selectCity = (item:string) => {
+      setIsOpen(false)
+      setWord(item);
+    }
   
     return (
       isOpen && (
         <div className={`${sprinkles({ padding: 'large' })}`}>
-
-
-            <ul className={`${sprinkles({ paddingTop: 'large' })}`}>
-              { list.map((item, index)=> (
-                  <li key={index} data-city={item}>
-                    <Flex direction="row" align="center" justify="between" gap="small" className="title">
-                      <TextLink onClick={deleteAll} color="textInfo" sizes ="mediumlarge"><IconText icon={faSearch} style={{paddingRight : 5}}></IconText>{item}</TextLink>
-                      <Text color="textInfo" sizes="medium"><IconButton style={{paddingLeft : 5}} color="textInfo" icon={faClose} onClick = {(e)=> deleteHistory(e)}></IconButton></Text>
-                    </Flex>
-                  </li>
-              ))}
-            </ul>
+              <ul className={`${sprinkles({ paddingTop: 'large' })}`}>
+                { list?.map((item, index)=> (
+                    <li key={index} data-city={item}>
+                      <Flex direction="row" align="center" justify="between" gap="small" className="title">
+                        <TextLink onClick={()=>selectCity(item)} color="textInfo" sizes ="mediumlarge"><IconText icon={faSearch} style={{paddingRight : 5}}></IconText>{item}</TextLink>
+                        <Text color="textInfo" sizes="medium"><IconButton style={{paddingLeft : 5}} color="textInfo" icon={faClose} onClick = {(e)=> deleteHistory(e)}></IconButton></Text>
+                      </Flex>
+                    </li>
+                ))}
+              </ul>
 
 
 

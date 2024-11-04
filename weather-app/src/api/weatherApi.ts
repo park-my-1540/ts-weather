@@ -9,10 +9,11 @@ const convertTime = (_sec: number): string => {
   return date.toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit" });
 };
 
-export const fetchWeatherList = async (unit: string, city_name: string): Promise<WeatherResponse> => {
+export const fetchWeatherList = async (unit: string, city_name: string, lon: number, lat: number): Promise<WeatherResponse> => {
   //TODO 
+  console.log(unit, city_name)
   const current_url = `https://api.openweathermap.org/data/2.5/weather?q=${city_name}&appid=${WEATHER_KEY}&units=${unit}`;
-  const forecast_url = `https://api.openweathermap.org/data/2.5/forecast?lat=33.44&lon=-94.04&cnt=12&appid=${WEATHER_KEY}`;
+  const forecast_url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=12&appid=${WEATHER_KEY}`;
 
 
   const [currentResponse, forecastResponse] = await Promise.all([
