@@ -10,14 +10,16 @@ const convertTime = (_sec: number): string => {
 };
 
 export const fetchWeatherList = async (unit: string, city_name: string): Promise<WeatherResponse> => {
-  //TODO 쿼리 정리
+  //TODO 
   const current_url = `https://api.openweathermap.org/data/2.5/weather?q=${city_name}&appid=${WEATHER_KEY}&units=${unit}`;
   const forecast_url = `https://api.openweathermap.org/data/2.5/forecast?lat=33.44&lon=-94.04&cnt=12&appid=${WEATHER_KEY}`;
+
 
   const [currentResponse, forecastResponse] = await Promise.all([
     axios.get(current_url),
     axios.get(forecast_url)
   ]);
+
 
   const currentData = currentResponse.data;
   const forecastData = forecastResponse.data;

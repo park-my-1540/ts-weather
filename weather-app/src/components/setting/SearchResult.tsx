@@ -53,7 +53,7 @@ const SearchResult = ({
               { recentCitys.map((item, index)=> (
                   <li key={index} data-city={item.city}>
                     <Flex direction="row" align="center" justify="between" gap="small" className="title">
-                      <TextLink onClick={deleteAll} color="textInfo" sizes ="smallmedium"><IconText icon={faSearch} style={{paddingRight : 5}}></IconText>{item.city}</TextLink>
+                      <TextLink onClick={deleteAll} color="textInfo" sizes ="mediumlarge"><IconText icon={faSearch} style={{paddingRight : 5}}></IconText>{item.city}</TextLink>
                       <Text color="textInfo" sizes="medium">{item.date}<IconButton style={{paddingLeft : 5}} color="textInfo" icon={faClose} onClick = {(e)=> deleteHistory(e)}></IconButton></Text>
                     </Flex>
                   </li>

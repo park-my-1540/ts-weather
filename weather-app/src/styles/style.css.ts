@@ -87,6 +87,8 @@ export const weatherIcon = style({
   textAlign: 'center',
   padding: '0 20px',
   height: 80,
+  wordBreak: 'keep-all',
+  whiteSpace: 'pre',
 })
 
 // weatherCont 클래스가 부모에 있을 때만 border 추가

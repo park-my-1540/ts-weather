@@ -1,7 +1,8 @@
 import { styleVariants, style } from '@vanilla-extract/css';
 
 export const container = style({
-    overflowX: 'hidden',
-    width: 330,
+    overflow: 'hidden',
+    width: 298,
     margin: '0 auto',
+    padding: '8px 0'
 })

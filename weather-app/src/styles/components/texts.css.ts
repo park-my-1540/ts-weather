@@ -9,10 +9,13 @@ const variants = {
     small: style({
       fontSize: '12px',
     }),
+    smallmedium: style({
+      fontSize: '14px',
+    }),
     medium: style({
       fontSize: '16px',
     }),
-    smallmedium: style({
+    mediumlarge: style({
       fontSize: '20px',
     }),
     large: style({
@@ -22,8 +25,8 @@ const variants = {
       fontSize: '50px'
     }),
     big: style({
-      fontSize: '110px',
-      lineHeight: '110px'
+      fontSize: '120px',
+      lineHeight: '120px'
     }),
   },
   weights: {

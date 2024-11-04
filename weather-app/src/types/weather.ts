@@ -17,3 +17,8 @@ export interface WeatherItem {
   export interface WeatherResponse {
     items: WeatherItem[];
   }
+
+  export interface WidgetProps {
+  items: object[]; // 적절한 타입으로 변경
+  weatherRef: React.RefObject<HTMLDivElement>; // weatherRef 타입 지정
+}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Header  from "@/components/main/Header";
 import Widget  from "@/components/main/Widget";
 import Weather  from "@/components/main/Weather";
@@ -11,6 +11,7 @@ import { WeatherItem } from "@/types/weather";
 export default function Main() {
     const activeTheme = useRecoilValue(optionState); // 현재 테마 값 가져오기
     const [items, setItems] = useState<WeatherItem[]>([]);
+    const weatherRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
       fetchWeatherList("metric", "Seoul").then(({ items }) => {
@@ -20,8 +21,8 @@ export default function Main() {
     return (
     <div className={`${baseStyle} ${themeVariants[activeTheme.highlightColor]}`}>
         <Header/>
-        <Widget/>
-        <Weather items={items}/>
+        <Widget items={items} weatherRef={weatherRef}/>
+        <Weather items={items} weatherRef={weatherRef}/>
     </div>
     );
   }

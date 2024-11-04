@@ -19,7 +19,7 @@ export default function Swiper({children} : SwiperProps) {
     const [current, setCurrent] = useState(0);
     const [isPrevDisable, setIsPrevDisable] = useState(false);
     const [isNextDisable, setIsNextDisable] = useState(false);
-    const gap = 341;
+    const gap = 298;
   
     const moveToPrev = useCallback(() => {
       if (isPrevDisable) {
