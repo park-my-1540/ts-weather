@@ -33,6 +33,13 @@ export interface WeatherItem {
   }
 
   export interface WidgetProps {
-  items: WeatherItem[]; // 적절한 타입으로 변경
-  weatherRef: React.RefObject<HTMLDivElement>; // weatherRef 타입 지정
+    items: WeatherItem[];
+    weatherRef: React.RefObject<HTMLDivElement>; // weatherRef 타입 지정
+}
+
+  export interface queryWeather {
+    unit: string;
+    city: string;
+    lat: number;
+    lon: number
 }

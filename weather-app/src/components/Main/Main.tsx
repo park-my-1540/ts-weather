@@ -7,17 +7,20 @@ import { baseStyle, themeVariants } from '@/styles/components/main.css';
 import { useRecoilValue } from 'recoil';
 import { fetchWeatherList } from "@/api/weatherApi";
 import { WeatherItem } from "@/types/weather";
+import { queryState } from "@/recoil/atoms/queryAtom";
 
 export default function Main() {
     const activeTheme = useRecoilValue(optionState); // 현재 테마 값 가져오기
+    const query = useRecoilValue(queryState); // 현재 테마 값 가져오기
     const [items, setItems] = useState<WeatherItem[]>([]);
     const weatherRef = useRef<HTMLDivElement>(null);
-
+   
     useEffect(() => {
-      fetchWeatherList("metric", "Seoul", 126, 36).then(({ items }) => {
+      fetchWeatherList(query.unit,query.city, query.lat, query.lon).then(({ items }) => {
         setItems(items);
-      });
+      })
     }, []);
+    
     return (
     <div className={`${baseStyle} ${themeVariants[activeTheme.highlightColor]}`}>
         <Header/>

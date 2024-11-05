@@ -44,7 +44,6 @@ export default function Main({ items, weatherRef } : WidgetProps) {
     useEffect(() => {
         if (weatherRef.current) {
             setRefHeight(weatherRef.current.clientHeight);
-            console.log(refHeight)
         }
     }, [weatherRef.current]); // isOpen이 변경될 때마다 높이를 업데이트
 

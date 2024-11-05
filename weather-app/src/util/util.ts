@@ -8,3 +8,11 @@ export function isEmpty(value: unknown): boolean {
   }
   return false;
 }
+
+export function currentDate(): string {
+  const today = new Date();
+  const month = today.getMonth() + 1;
+  const year = today.getFullYear();
+  const day = today.getDate();
+  return `${month}.${day}.${year}`
+}

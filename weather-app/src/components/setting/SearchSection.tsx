@@ -7,10 +7,10 @@ import  Flex  from "@/components/Flex";
 import { Position } from "@/components/Position";
 import { searchResultBox } from "@/styles/components/search.css";
 import { localStorageState } from "@/recoil/atoms/searchAtom";
+import { queryState } from "@/recoil/atoms/queryAtom";
 import { useRecoilState } from 'recoil';
 import citylist from "@/json/citylist.json";
 import { isEmpty } from "@/util/util";
-import { useUpdateWeatherItems } from '@/action/weatherAction'; // 방금 만든 훅 import
 
 interface InputSectionProps {
   activeTheme: ThemeColor;
@@ -20,10 +20,10 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [word, setWord] = useState(''); // input value
   const [searchState, setSearchState] = useRecoilState(localStorageState);
+  const [, setQueryState] = useRecoilState(queryState);
   const [filterList, setFilterList] = useState<string[]>([]);
   const [isValid, setIsValid] = useState(true); // 유효성 검사 상태
   const [, setRecentCitys] = useState<{ city: string; date: string }[]>([]);
-  const { updateWeatherItems } = useUpdateWeatherItems(); // 훅 사용하기
 
   useEffect(() => {
     const storedData = localStorage.getItem('searchData');
@@ -62,10 +62,14 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
     setIsOpen(false)
 
     const match = citylist.filter((item)=> word === item.name)
-    const lon = match[0].coord.lon;
-    const lat = match[0].coord.lat;
-
-    updateWeatherItems("metric", word ,lon,lat)
+    const { lon,lat } = match[0].coord;
+    
+    setQueryState({
+      unit: "metric", 
+      city: word,
+      lat: lat,
+      lon: lon,
+    });
   };
 
 /**
