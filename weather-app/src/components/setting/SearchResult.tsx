@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Text, TextLink } from "@/components/Text";
-import { IconText, IconButton } from "../IconText";
+import { Text, TextLink } from "@/components/atom//Text";
+import { IconText, IconButton } from "@/components/atom/IconText";
 import { faSearch, faClose } from '@fortawesome/free-solid-svg-icons'
-import  Flex  from "@/components/Flex";
+import  Flex  from "@/components/atom/Flex";
 import { sprinkles } from "@/styles/common/sprinkles.css"; // sprinkles import
 import { localStorageState } from "@/recoil/atoms/searchAtom";
 import { useRecoilValue } from 'recoil';

@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import * as styles from "@/styles/style.css";
 import { flexRowBetween } from "@/styles/components/flexbox.css";
-import { Text } from "@/components/Text";
+import { Text } from "@/components/atom/Text";
 
 interface SettingItemProps {
   title: string;

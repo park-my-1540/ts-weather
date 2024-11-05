@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { ThemeColor } from '@/types/styles';
-import { RadioButton } from "@/components/CustomRadio";
+import { RadioButton } from "@/components/atom/CustomRadio";
 import { OptionType } from "@/types/styles";
 
 interface RadioButtonGroupProps {

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import { Position } from "@/components/Position";
-import { Text } from "@/components/Text";
-import { IconText } from '@/components/IconText';
+import { Position } from "@/components/atom/Position";
+import { Text } from "@/components/atom/Text";
+import { IconText } from '@/components/atom/IconText';
 import { motion, useAnimation } from "framer-motion";
 import { mainState } from "@/recoil/atoms/mainAtom";
 import { useRecoilValue, useRecoilState } from 'recoil';

@@ -1,6 +1,6 @@
-import { Text } from "@/components/Text";
-import { Position } from "@/components/Position";
-import { IconText } from '@/components/IconText';
+import { Text } from "@/components/atom/Text";
+import { Position } from "@/components/atom/Position";
+import { IconText } from '@/components/atom/IconText';
 import * as styles from '@/styles/components/main.css';
 import { faBars, faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import Link from "next/link";

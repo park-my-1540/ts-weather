@@ -1,7 +1,7 @@
 
 import { header } from "@/styles/style.css";
 import { flexRowBetween } from "@/styles/components/flexbox.css";
-import { IconButton } from '@/components/IconText';
+import { IconButton } from '@/components/atom/IconText';
 import { faClose } from '@fortawesome/free-solid-svg-icons'
 
 interface SettingHeaderProps {

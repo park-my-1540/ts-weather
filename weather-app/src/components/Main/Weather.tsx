@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import { IconButton, IconText } from '@/components/IconText';
+import { IconButton, IconText } from '@/components/atom/IconText';
 import { motion, useAnimation } from "framer-motion";
 import { useEffect, useCallback, useState } from 'react';
 import { mainState } from "@/recoil/atoms/mainAtom";
 import { useRecoilState } from 'recoil';
 import { faChevronDown, faTint, faWeight, faSmog, faSun, faCloud, faClock, faThermometerQuarter, faCompass, faWind } from '@fortawesome/free-solid-svg-icons'
-import { Text } from "@/components/Text";
-import  Flex  from "@/components/Flex";
-import  Swiper  from "@/components/Swiper";
-import { Position } from "@/components/Position";
+import { Text } from "@/components/atom/Text";
+import  Flex  from "@/components/atom/Flex";
+import  Swiper  from "@/components/atom/Swiper";
+import { Position } from "@/components/atom/Position";
 import { weatherCont, weatherIcon, conditionalBorder } from "@/styles/style.css";
 import { optionState } from '@/recoil/atoms/optionAtom';
 import { convertTo12HourFormat, setWeatherIcon } from "@/util/filter";

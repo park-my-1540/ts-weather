@@ -3,11 +3,11 @@ import { useRecoilValue, useRecoilState } from 'recoil';
 import * as styles from "@/styles/style.css";
 import { optionState, tempState } from '@/recoil/atoms/optionAtom'; // Recoil atom import
 import { lightTheme, darkTheme } from "@/styles/common/createThemeContract.css";
-import { Button } from "@/components/Button";
+import { Button } from "@/components/atom/Button";
 import SettingHeader  from "@/components/setting/SettingHeader";
 import SearchSection  from "@/components/setting/SearchSection";
 import SettingList  from "@/components/setting/SettingList";
-import { Position } from "@/components/Position";
+import { Position } from "@/components/atom/Position";
 
 export default function Setting() {
   const currentTheme = useRecoilValue(tempState); // 현재 테마 값 가져오기

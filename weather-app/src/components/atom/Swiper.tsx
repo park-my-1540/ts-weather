@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
 import * as style from "@/styles/components/swiper.css";
 import { motion, useAnimation } from "framer-motion";
-import { IconButton } from '@/components/IconText';
+import { IconButton } from '@/components/atom/IconText';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
-import  Flex  from "@/components/Flex";
-import { Position } from "@/components/Position";
+import  Flex  from "@/components/atom/Flex";
+import { Position } from "@/components/atom/Position";
 
 interface SwiperProps {
     children : React.ReactNode

@@ -1,9 +1,9 @@
 import { flexRowAround } from "@/styles/components/flexbox.css";
-import { ThemeButton } from "@/components/Button";
+import { ThemeButton } from "@/components/atom/Button";
 import { ThemeColor } from "@/types/styles"
 import { SettingItem } from "@/components/setting/SettingItem"
-import RadioButtonGroup from "../RadioButtonGroup";
-import { IconText } from '@/components/IconText';
+import RadioButtonGroup from "@/components/atom/RadioButtonGroup";
+import { IconText } from '@/components/atom/IconText';
 import { faCheck, faClose, faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 import { useRecoilState } from 'recoil';
 import { HighlightColor, tempState } from '@/recoil/atoms/optionAtom'; // Recoil atom import

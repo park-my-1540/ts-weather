@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { ThemeColor } from "@/types/styles"
-import { Input } from "@/components/Input";
-import { Button } from "@/components/Button";
+import { Input } from "@/components/atom/Input";
+import { Button } from "@/components/atom/Button";
 import  SearchResult  from "@/components/setting/SearchResult";
-import  Flex  from "@/components/Flex";
-import { Position } from "@/components/Position";
+import  Flex  from "@/components/atom/Flex";
+import { Position } from "@/components/atom/Position";
 import { searchResultBox } from "@/styles/components/search.css";
 import { localStorageState } from "@/recoil/atoms/searchAtom";
 import { queryState } from "@/recoil/atoms/queryAtom";
