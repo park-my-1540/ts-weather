@@ -8,6 +8,7 @@ import SettingHeader  from "@/components/setting/SettingHeader";
 import SearchSection  from "@/components/setting/SearchSection";
 import SettingList  from "@/components/setting/SettingList";
 import { Position } from "@/components/atom/Position";
+import Loading from "@/components/loading";
 
 export default function Setting() {
   const currentTheme = useRecoilValue(tempState); // 현재 테마 값 가져오기
@@ -28,6 +29,7 @@ export default function Setting() {
 
   return (
     <>
+      <Loading/>
       <div className={`${currentTheme.mode ==='dark' ? darkTheme : lightTheme} ${styles.setting}`}>
         <SettingHeader onClose={ handleGoHome }/>
 
