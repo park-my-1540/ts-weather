@@ -64,5 +64,5 @@ const spin = keyframes({
 
 export const animatedSun = style([
   sun,
-  { animation: `${spin} 8s infinite linear` },
+  { animation: `${spin} 12s infinite linear` },
 ]);
