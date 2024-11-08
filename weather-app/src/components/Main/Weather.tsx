@@ -8,6 +8,7 @@ import { faChevronDown, faTint, faWeight, faSmog, faSun, faCloud, faClock, faThe
 import { Text } from "@/components/atom/Text";
 import  Flex  from "@/components/atom/Flex";
 import  Swiper  from "@/components/atom/Swiper";
+import WeatherSection from '@/components/main/WeatherSection';
 import { Position } from "@/components/atom/Position";
 import { weatherCont, weatherIcon, conditionalBorder } from "@/styles/style.css";
 import { optionState } from '@/recoil/atoms/optionAtom';
@@ -61,69 +62,41 @@ export default function Main({ items, weatherRef } : WidgetProps) {
 
             {
                 weatherItem && (
-
                     <div className={weatherCont} ref={weatherRef}>
                         {
                             tempOptions.atmo && (
-                                <Flex direction="column" align="center" justify="between" gap="small" className={conditionalBorder}>
-                                    <Text sizes="medium" color="accent" textAlign='center' style={{'padding' : '8px 0'}}>Atmospheric Conditions</Text>
-                                    <Flex direction="row" align="center" justify="between" gap="small">
-                                        <div className={weatherIcon}>
-                                            <IconText icon={faTint} color='accent' fontSize='26px'/>
-                                            <Text sizes="medium" color="accent">Humidity<br/>{weatherItem.humidity}%</Text>
-                                        </div>
-                                        <div className={weatherIcon}>
-                                            <IconText icon={faWeight} color='accent' fontSize='26px'/>
-                                            <Text sizes="medium" color="accent">Pressure<br/>{weatherItem.pressure}</Text>
-                                        </div>
-                                        <div className={weatherIcon}>
-                                            <IconText icon={faSmog} color='accent' fontSize='26px'/>
-                                            <Text sizes="medium" color="accent">Visibility <br/>{weatherItem.visibility}</Text>
-                                        </div>
-                                    </Flex>
-                                </Flex>
+                                <WeatherSection
+                                    title="Atmospheric Conditions"
+                                    items={[
+                                    { icon: faTint, label: 'Humidity', value: `${weatherItem.humidity}%` },
+                                    { icon: faWeight, label: 'Pressure', value: weatherItem.pressure },
+                                    { icon: faSmog, label: 'Visibility', value: weatherItem.visibility },
+                                    ]}
+                                />
                             )
                         }
                         {
                             tempOptions.sun && (
-                                <Flex direction="column" align="center" justify="between" gap="small" className={conditionalBorder}>
-                                    <Text sizes="medium" color="accent" textAlign='center' style={{'padding' : '8px 0'}}>Sunrise/Sunset</Text>
-                                    <Flex direction="row" align="center" justify="between" gap="small">
-                                        <div className={weatherIcon}>
-                                            <IconText icon={faSun} color='accent' fontSize='26px'/>
-                                            <Text sizes="medium" color="accent">Sunrise <br/>{weatherItem.sunrise}</Text>
-                                        </div>
-                                        <div className={weatherIcon}>
-                                            <IconText icon={faCloud} color='accent' fontSize='26px'/>
-                                            <Text sizes="medium" color="accent">Cloud<br/>{weatherItem.cloud}</Text>
-                                        </div>
-                                        <div className={weatherIcon}>
-                                            <IconText icon={faClock} color='accent' fontSize='26px'/>
-                                            <Text sizes="medium" color="accent">Sunset<br/>{weatherItem.sunset}</Text>
-                                        </div>
-                                    </Flex>
-                                </Flex>
+                                <WeatherSection
+                                    title="Sunrise/Sunset"
+                                    items={[
+                                    { icon: faSun, label: 'Sunrise', value: weatherItem.sunrise },
+                                    { icon: faCloud, label: 'Cloud', value: weatherItem.cloud },
+                                    { icon: faClock, label: 'Sunset', value: weatherItem.sunset },
+                                    ]}
+                                />
                             )
                         }
                         {
                             tempOptions.wind && (
-                                <Flex direction="column" align="center" justify="between" gap="small" className={conditionalBorder}>
-                                    <Text sizes="medium" color="accent" textAlign='center' style={{'padding' : '8px 0'}}>Wind Conditions</Text>
-                                    <Flex direction="row" align="center" justify="between" gap="small">
-                                        <div className={weatherIcon}>
-                                            <IconText icon={faThermometerQuarter} color='accent' fontSize='26px'/>
-                                            <Text sizes="medium" color="accent">Feels Like <br/>{weatherItem.temp}</Text>
-                                        </div>
-                                        <div className={weatherIcon}>
-                                            <IconText icon={faCompass} color='accent' fontSize='26px'/>
-                                            <Text sizes="medium" color="accent">Direction<br/>{weatherItem.wind_dir}</Text>
-                                        </div>
-                                        <div className={weatherIcon}>
-                                            <IconText icon={faWind} color='accent' fontSize='26px'/>
-                                            <Text sizes="medium" color="accent">Speed<br/>{weatherItem.wind_speed}</Text>
-                                        </div>
-                                    </Flex>
-                                </Flex>
+                                <WeatherSection
+                                    title="Wind Conditions"
+                                    items={[
+                                    { icon: faThermometerQuarter, label: 'Feels Like', value: weatherItem.temp },
+                                    { icon: faCompass, label: 'Direction', value: weatherItem.wind_dir },
+                                    { icon: faWind, label: 'Speed', value: weatherItem.wind_speed },
+                                    ]}
+                                />
                             )
                         }
 

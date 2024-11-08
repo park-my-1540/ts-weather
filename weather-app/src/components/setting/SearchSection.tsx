@@ -113,11 +113,6 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
 
   const clickInput = useCallback(() => {
     setIsOpen((prev) => !prev)
-    // if(!isEmpty(word)) {
-    // }else{
-    //   setIsOpen(false)
-    //   setFilterList([]);
-    // }
   },[word])
 
   return (
