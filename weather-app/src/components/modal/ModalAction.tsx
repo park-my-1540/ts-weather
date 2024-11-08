@@ -18,7 +18,7 @@ class ModalAction {
     this.setModal({isOpen : true, message});
     setTimeout(() => {
       this.setModal({isOpen: false, message: ""})
-    },2000);
+    },1000);
   }
 }
 

@@ -2,6 +2,7 @@
 import { device } from "@/styles/style.css";
 import { motion } from "framer-motion";
 import Setting from "@/components/setting/Setting"
+import Modal from "@/components/modal/Modal"
 export default function Home() {
   return (
     <>
@@ -14,6 +15,7 @@ export default function Home() {
       >
        <div className={device}>
         <Setting/>
+        <Modal/>
       </div>
 
     </motion.div>

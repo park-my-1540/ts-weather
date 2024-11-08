@@ -9,9 +9,10 @@ import { searchResultBox } from "@/styles/components/search.css";
 import { localStorageState } from "@/recoil/atoms/searchAtom";
 import { queryState } from "@/recoil/atoms/queryAtom";
 import { useRecoilState } from 'recoil';
-import citylist from "@/json/citylist.json";
+import { cityList } from "@/json/citylist"
 import { isEmpty } from "@/util/util";
 import Modal from "@/components/modal/ModalAction";
+import { CityNameType } from "@/types/city";
 
 
 interface InputSectionProps {
@@ -25,7 +26,7 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
   const [, setQueryState] = useRecoilState(queryState);
   const [filterList, setFilterList] = useState<string[]>([]);
   const [isValid, setIsValid] = useState(true); // 유효성 검사 상태
-  const [, setRecentCitys] = useState<{ city: string; date: string }[]>([]);
+  const [, setRecentCitys] = useState<{ city: CityNameType; date: string }[]>([]);
 
   useEffect(() => {
     const storedData = localStorage.getItem('searchData');
@@ -36,15 +37,20 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
 
   // 입력 값이 없으면 버튼 비활성화, 닫기
   useEffect(() => {
-    setIsValid(!isEmpty(word));
+    setIsValid(!isEmpty(word) && isCityName(word));
     setIsOpen(!isEmpty(word))
-  }, [filterList]);
+  }, [filterList, word]);
 
   const date = useCallback(() => {
     const today = new Date();
     return `${today.getMonth() + 1}.${today.getDate()}`
   },[])
 
+
+  function isCityName(word: string): word is CityNameType {
+    return cityList.some((city) => city.name === word);
+  }
+  
   /**
    * 로컬 스토리지 업데이트 후 인풋 닫기
    */
@@ -63,7 +69,7 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
     setSearchState(updatedLocalStorage)
     setIsOpen(false)
 
-    const match = citylist.filter((item)=> word === item.name)
+    const match = cityList.filter((item)=> word === item.name)
     const { lon,lat } = match[0].coord;
     
     setQueryState({
@@ -84,7 +90,7 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
     setWord(word);
 
     let array:string[] = [];
-    const filterCity = citylist.filter(function (element) {
+    const filterCity = cityList.filter(function (element) {
       //해당 단어와 매치된 도시
       const lowerEle = element.name.toLowerCase();
       const lowerVal = word.toLowerCase();

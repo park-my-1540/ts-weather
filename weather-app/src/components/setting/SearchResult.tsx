@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Text, TextLink } from "@/components/atom//Text";
 import { IconText, IconButton } from "@/components/atom/IconText";
 import { faSearch, faClose } from '@fortawesome/free-solid-svg-icons'
@@ -7,6 +7,7 @@ import { sprinkles } from "@/styles/common/sprinkles.css"; // sprinkles import
 import { localStorageState } from "@/recoil/atoms/searchAtom";
 import { useRecoilValue } from 'recoil';
 import { isEmpty } from "@/util/util";
+import { CityNameType } from "@/types/city";
 
 interface SearchResultProps {
   isOpen : boolean,
@@ -21,7 +22,7 @@ const SearchResult = ({
   setIsOpen
 }: SearchResultProps) => {
   const searchStateAtom = useRecoilValue(localStorageState);
-  const [recentCitys, setRecentCitys] = useState<{ city: string; date: string }[]>([]);
+  const [recentCitys, setRecentCitys] = useState<{ city: CityNameType; date: string }[]>([]);
   // localStorage에서 값을 가져옴.
   useEffect(() => {
     const storedData = localStorage.getItem('searchData');
@@ -30,25 +31,28 @@ const SearchResult = ({
     }
   }, [searchStateAtom]);
 
-
-    const deleteHistory = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const deleteHistory = useCallback((e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       const targetItem = e.currentTarget.closest('li')?.getAttribute('data-city');
       const tempCitys = Object.values(recentCitys).filter((x) => {
         return x.city !== targetItem;
       });
       setRecentCitys(tempCitys);
       localStorage.setItem("searchData", JSON.stringify(tempCitys));
-    }
+    },[])
 
-    const deleteAll = () => {
+    const deleteAll = useCallback(() => {
       localStorage.removeItem("searchData");
       setRecentCitys([]); //해야 컴포넌트 리렌더링 된답니다.
-    }
+    },[])
 
-    const selectCity = (item:string) => {
+    const selectCity = useCallback((item:string) => {
       setIsOpen(false)
       setWord(item);
-    }
+    },[])
+
+    const update = useCallback((city:CityNameType) => {
+      setWord(city);
+    },[])
   
     return (
       isOpen && (
@@ -86,7 +90,7 @@ const SearchResult = ({
                     { recentCitys.map((item, index)=> (
                         <li key={index} data-city={item.city}>
                           <Flex direction="row" align="center" justify="between" gap="small" className="title">
-                            <TextLink onClick={deleteAll} color="textInfo" sizes ="mediumlarge"><IconText icon={faSearch} style={{paddingRight : 5}}></IconText>{item.city}</TextLink>
+                            <TextLink onClick={() => update(item.city) } color="textInfo" sizes ="mediumlarge"><IconText icon={faSearch} style={{paddingRight : 5}}></IconText>{item.city}</TextLink>
                             <Text color="textInfo" sizes="medium">{item.date}<IconButton style={{paddingLeft : 5}} color="textInfo" icon={faClose} onClick = {(e)=> deleteHistory(e)}></IconButton></Text>
                           </Flex>
                         </li>

@@ -1,4 +1,4 @@
-[
+export const cityList = [
     {
       "id": 1832008,
       "name": "Tokusan-ri",
@@ -1729,4 +1729,4 @@
         "lat": 33.464439
       }
     }
-  ]
+  ] as const;
