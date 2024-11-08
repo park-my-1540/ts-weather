@@ -55,6 +55,8 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
    * 로컬 스토리지 업데이트 후 인풋 닫기
    */
   const update = useCallback(() => {
+
+    if(!isCityName(word)) { return }
     const newVal = {
       city : word,
       date : date()

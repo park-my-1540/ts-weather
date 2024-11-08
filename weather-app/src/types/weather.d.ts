@@ -1,3 +1,5 @@
+import { CityNameType } from "@/types/city";
+
 export interface WeatherItem {
     id: string;
     main: string;
@@ -39,7 +41,7 @@ export interface WeatherItem {
 
   export interface queryWeather {
     unit: string;
-    city: string;
+    city: CityNameType;
     lat: number;
     lon: number
 }

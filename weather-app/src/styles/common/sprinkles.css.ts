@@ -92,5 +92,4 @@ import {
     colorProperties
   );
   
-  // It's a good idea to export the Sprinkles type too
   export type Sprinkles = Parameters<typeof sprinkles>[0];

@@ -21,7 +21,12 @@ export default function Main() {
 
     useEffect(() => {
       setIsLoading(true);
-      fetchWeatherList(query.unit,query.city, query.lat, query.lon).then(({ items }) => {
+      fetchWeatherList({
+        unit: query.unit,
+        city: query.city, 
+        lat: query.lat, 
+        lon: query.lon
+      }).then(({ items }) => {
         setItems(items);
       }).catch((error) => {
         console.log(error);

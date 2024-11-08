@@ -45,18 +45,8 @@ export const button = recipe({
   });
 export type ButtonVariantProps = RecipeVariants<typeof button>;
 
-const themeButtonBase = {
-    display: 'inline-block',
-    position: 'relative',
-    width: 'calc(25% - 12px)',
-    height: 60,
-    transition: '.2s',
-}
 
 export const themeButton = recipe({
-    base: { //공통적으로 적용시킬것
-      ...themeButtonBase
-    },
     variants: variants, // 상황에 따라
     defaultVariants: { //fallback으로 사용할 variants 설정
       color: 'primary',
@@ -66,6 +56,11 @@ export const themeButton = recipe({
 export type ThemeButtonVariantProps = RecipeVariants<typeof themeButton>;
 
 export const activeStyle = style({
+  display: 'inline-block',
+  position: 'relative',
+  width: 'calc(25% - 12px)',
+  height: 60,
+  transition: '.2s',
   selectors: {
     '&.on::before': {
       content: "",

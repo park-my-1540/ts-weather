@@ -11,10 +11,10 @@ import { CityNameType } from "@/types/city";
 
 interface SearchResultProps {
   isOpen : boolean,
-  list: string[],
+  list: string[], // filter list
   setWord: React.Dispatch<React.SetStateAction<string>>,
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
-  }
+}
 const SearchResult = ({
   isOpen,
   list,
