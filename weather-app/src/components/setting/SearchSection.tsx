@@ -11,6 +11,8 @@ import { queryState } from "@/recoil/atoms/queryAtom";
 import { useRecoilState } from 'recoil';
 import citylist from "@/json/citylist.json";
 import { isEmpty } from "@/util/util";
+import Modal from "@/components/modal/ModalAction";
+
 
 interface InputSectionProps {
   activeTheme: ThemeColor;
@@ -35,7 +37,7 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
   // 입력 값이 없으면 버튼 비활성화, 닫기
   useEffect(() => {
     setIsValid(!isEmpty(word));
-    setIsOpen(!isEmpty(word) && !isEmpty(filterList))
+    setIsOpen(!isEmpty(word))
   }, [filterList]);
 
   const date = useCallback(() => {
@@ -46,7 +48,7 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
   /**
    * 로컬 스토리지 업데이트 후 인풋 닫기
    */
-  const update = () => {
+  const update = useCallback(() => {
     const newVal = {
       city : word,
       date : date()
@@ -70,7 +72,8 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
       lat: lat,
       lon: lon,
     });
-  };
+    Modal.open('Update!')
+  },[word]);
 
 /**
  * 이 함수는 어떤 작업을 수행합니다.
@@ -87,6 +90,7 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
       const lowerVal = word.toLowerCase();
       return lowerEle.includes(lowerVal);
     });
+
     if (filterCity) {
       filterCity.map((city) => {
         const name = city.name;
@@ -102,12 +106,12 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
   },[word])
 
   const clickInput = useCallback(() => {
-    if(!isEmpty(word)) {
-      setIsOpen((prev) => !prev)
-    }else{
-      setIsOpen(false)
-      setFilterList([]);
-    }
+    setIsOpen((prev) => !prev)
+    // if(!isEmpty(word)) {
+    // }else{
+    //   setIsOpen(false)
+    //   setFilterList([]);
+    // }
   },[word])
 
   return (

@@ -6,6 +6,7 @@ import  Flex  from "@/components/atom/Flex";
 import { sprinkles } from "@/styles/common/sprinkles.css"; // sprinkles import
 import { localStorageState } from "@/recoil/atoms/searchAtom";
 import { useRecoilValue } from 'recoil';
+import { isEmpty } from "@/util/util";
 
 interface SearchResultProps {
   isOpen : boolean,
@@ -52,8 +53,10 @@ const SearchResult = ({
     return (
       isOpen && (
         <div className={`${sprinkles({ padding: 'large' })}`}>
+          {
+            !isEmpty(list) ? (
               <ul className={`${sprinkles({ paddingTop: 'large' })}`}>
-                { list?.map((item, index)=> (
+                { list.map((item, index)=> (
                     <li key={index} data-city={item}>
                       <Flex direction="row" align="center" justify="between" gap="small" className="title">
                         <TextLink onClick={()=>selectCity(item)} color="textInfo" sizes ="mediumlarge"><IconText icon={faSearch} style={{paddingRight : 5}}></IconText>{item}</TextLink>
@@ -62,37 +65,37 @@ const SearchResult = ({
                     </li>
                 ))}
               </ul>
+           ) : 
+              recentCitys.length < 1 ? (
+              <div className={`${sprinkles({ paddingY: 'large' })}`}>
+                <Text textAlign="center" color="textSecondary">
+                  일치하는 검색어가 없습니다.<br/>
+                  검색어를 확인해주세요.
+                </Text>
+              </div>
+              ) : (
+                <>
+                  <div className="list recent">
+                      <Flex direction="row" align="center" justify="between" gap="small" className="title">
+                          <Text color="textSecondary">최근검색어</Text>
+                          <TextLink color="tertiary" sizes ="small" onClick={deleteAll}>전체삭제</TextLink>
+                      </Flex>
+                  </div>
+      
+                  <ul className={`${sprinkles({ paddingTop: 'large' })}`}>
+                    { recentCitys.map((item, index)=> (
+                        <li key={index} data-city={item.city}>
+                          <Flex direction="row" align="center" justify="between" gap="small" className="title">
+                            <TextLink onClick={deleteAll} color="textInfo" sizes ="mediumlarge"><IconText icon={faSearch} style={{paddingRight : 5}}></IconText>{item.city}</TextLink>
+                            <Text color="textInfo" sizes="medium">{item.date}<IconButton style={{paddingLeft : 5}} color="textInfo" icon={faClose} onClick = {(e)=> deleteHistory(e)}></IconButton></Text>
+                          </Flex>
+                        </li>
+                    ))}
+                  </ul>
+                </>
+              )
+          }
 
-
-
-            {/* <div className="list recent">
-                <Flex direction="row" align="center" justify="between" gap="small" className="title">
-                    <Text color="textSecondary">최근검색어</Text>
-                    <TextLink color="tertiary" sizes ="small" onClick={deleteAll}>전체삭제</TextLink>
-                </Flex>
-            </div> */}
-
-            {/* <ul className={`${sprinkles({ paddingTop: 'large' })}`}>
-              { recentCitys.map((item, index)=> (
-                  <li key={index} data-city={item.city}>
-                    <Flex direction="row" align="center" justify="between" gap="small" className="title">
-                      <TextLink onClick={deleteAll} color="textInfo" sizes ="mediumlarge"><IconText icon={faSearch} style={{paddingRight : 5}}></IconText>{item.city}</TextLink>
-                      <Text color="textInfo" sizes="medium">{item.date}<IconButton style={{paddingLeft : 5}} color="textInfo" icon={faClose} onClick = {(e)=> deleteHistory(e)}></IconButton></Text>
-                    </Flex>
-                  </li>
-              ))}
-            </ul> */}
-
-            {
-              // recentCitys.length < 1 && (
-              // <div className={`${sprinkles({ paddingY: 'large' })}`}>
-              //   <Text textAlign="center" color="textSecondary">
-              //     일치하는 검색어가 없습니다.<br/>
-              //     검색어를 확인해주세요.
-              //   </Text>
-              // </div>
-              // )
-            }
         </div>
       )
     );
