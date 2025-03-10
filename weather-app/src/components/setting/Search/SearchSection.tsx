@@ -1,21 +1,29 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { ThemeColor } from '@/types/styles';
-import { Input } from '@/components/atom/Input';
+import Input from '@/components/atom/Input';
 import { Button } from '@/components/atom/Button';
-import SearchResult from '@/components/setting/SearchResult';
+import SearchResult from '@/components/setting/Search/SearchResult';
 import Flex from '@/components/atom/Flex';
 import Position from '@/components/atom/Position';
 import { searchResultBox } from '@/styles/components/search.css';
 import localStorageState from '@/recoil/atoms/searchAtom';
-import { queryState } from '@/recoil/atoms/queryAtom';
-import { cityList } from '@/json/citylist';
+import queryState from '@/recoil/atoms/queryAtom';
+import cityList from '@/json/citylist';
 import { isEmpty } from '@/util/util';
 import Modal from '@/components/modal/ModalAction';
 import { CityNameType } from '@/types/city';
 
 interface InputSectionProps {
   activeTheme: ThemeColor;
+}
+
+function date() {
+  const today = new Date();
+  return `${today.getMonth() + 1}.${today.getDate()}`;
+}
+function isCityName(word: string): word is CityNameType {
+  return cityList.some((city) => city.name === word);
 }
 
 const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
@@ -42,19 +50,10 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
     setIsOpen(!isEmpty(word));
   }, [filterList, word]);
 
-  const date = useCallback(() => {
-    const today = new Date();
-    return `${today.getMonth() + 1}.${today.getDate()}`;
-  }, []);
-
-  function isCityName(word: string): word is CityNameType {
-    return cityList.some((city) => city.name === word);
-  }
-
   /**
    * 로컬 스토리지 업데이트 후 인풋 닫기
    */
-  const update = useCallback(() => {
+  const update = () => {
     if (!isCityName(word)) {
       return;
     }
@@ -79,46 +78,39 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
       lon,
     });
     Modal.open('Update!');
-  }, [word]);
+  };
 
   /**
    * 이 함수는 어떤 작업을 수행합니다.
    * @param {string} word - 처리할 단어
    * @returns {void}
    */
-  const filterWord = useCallback(
-    (word: string) => {
-      setWord(word);
+  const filterWord = (word: string) => {
+    setWord(word);
 
-      let array: string[] = [];
-      const filterCity = cityList.filter((element) => {
-        // 해당 단어와 매치된 도시
-        const lowerEle = element.name.toLowerCase();
-        const lowerVal = word.toLowerCase();
-        return lowerEle.includes(lowerVal);
+    let array: string[] = [];
+    const filterCity = cityList.filter((element) => {
+      // 해당 단어와 매치된 도시
+      const lowerEle = element.name.toLowerCase();
+      const lowerVal = word.toLowerCase();
+      return lowerEle.includes(lowerVal);
+    });
+
+    if (filterCity) {
+      filterCity.forEach((city) => {
+        const name = city.name;
+        const value = word.toLowerCase();
+
+        if (!isEmpty(word) && name.toLowerCase().startsWith(value, 0)) {
+          array.push(name);
+          array = array.filter(
+            (element, index) => array.indexOf(element) === index,
+          ); // 중복 제거
+        }
+        setFilterList(array);
       });
-
-      if (filterCity) {
-        filterCity.map((city) => {
-          const name = city.name;
-          const value = word.toLowerCase();
-
-          if (!isEmpty(word) && name.toLowerCase().startsWith(value, 0)) {
-            array.push(name);
-            array = array.filter(
-              (element, index) => array.indexOf(element) === index,
-            ); // 중복 제거
-          }
-          setFilterList(array);
-        });
-      }
-    },
-    [word],
-  );
-
-  const clickInput = useCallback(() => {
-    setIsOpen((prev) => !prev);
-  }, [word]);
+    }
+  };
 
   return (
     <Flex direction="row" align="center" justify="between" gap="small">
@@ -128,7 +120,7 @@ const InputSection: React.FC<InputSectionProps> = ({ activeTheme }) => {
         size="medium"
         placeholder="Search City ex) Seoul"
         onChange={(e) => filterWord(e.currentTarget.value)}
-        onClick={clickInput}
+        onClick={() => setIsOpen((prev) => !prev)}
       />
       <Button
         theme={activeTheme}

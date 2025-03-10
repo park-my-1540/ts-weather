@@ -11,7 +11,7 @@
   "parser": "@typescript-eslint/parser",
   "rules": {
     "quotes": ["error", "single"],
-    "operator-linebreak":["error","before"],
+    "operator-linebreak": ["error", "before"],
     "comma-dangle": "off",
     "camelcase": "off",
     "no-console": "off",
@@ -21,6 +21,7 @@
     "max-classes-per-file": "off",
     "remove-unused-variable": "off",
     "no-restricted-syntax": "off",
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
     "func-names": "off",
     "no-shadow": "off",
     "no-param-reassign": "off",

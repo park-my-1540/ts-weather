@@ -43,3 +43,9 @@ export interface queryWeather {
   lat: number;
   lon: number;
 }
+
+export interface SearchProps {
+  list: { city: CityNameType; date: string }[];
+  update: (city) => void;
+  deleteHistory: (target) => void;
+}

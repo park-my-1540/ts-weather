@@ -1,10 +1,6 @@
 import { atom } from 'recoil';
-import { OptionType, ThemeColor } from '@/types/styles';
+import { OptionType } from '@/types/styles';
 
-export type ThemeMode = 'light' | 'dark';
-export type HighlightColor = ThemeColor;
-
-// 초기값 설정
 const tempState = atom<OptionType>({
   key: 'tempState', // 고유 key
   default: {

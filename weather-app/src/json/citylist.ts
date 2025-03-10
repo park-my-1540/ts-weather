@@ -171,7 +171,7 @@ const cityList = [
   },
   {
     id: 1832830,
-    name: "Yangp'yŏng",
+    name: 'Yangpyŏng',
     state: '',
     country: 'KR',
     coord: {
@@ -1101,7 +1101,7 @@ const cityList = [
   },
   {
     id: 1842859,
-    name: "Koch'ang",
+    name: 'Kochang',
     state: '',
     country: 'KR',
     coord: {
@@ -1571,7 +1571,7 @@ const cityList = [
   },
   {
     id: 1846095,
-    name: "Chinch'ŏn",
+    name: 'Chinchŏn',
     state: '',
     country: 'KR',
     coord: {
