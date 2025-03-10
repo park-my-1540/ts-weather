@@ -2,7 +2,7 @@
 import { style } from '@vanilla-extract/css';
 
 export const overlay = style({
-  position: 'fixed',
+  position: 'absolute',
   width: '100%',
   height: '100%',
   zIndex: 99,
