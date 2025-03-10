@@ -1,3 +1,3 @@
-import {cityList} from "@/json/citylist";
+import { cityList } from '@/json/citylist';
 
-export type CityNameType = typeof cityList[number]["name"];
+export type CityNameType = (typeof cityList)[number]['name'];

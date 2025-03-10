@@ -23,9 +23,17 @@ export const Text = ({
   children,
   ...rest
 }: TextProps & Partial<TextVariantProps & TextColorVariantProps>) => {
-
   return (
-    <p {...rest} className={ `${text({sizes, weights, display, vertical, textAlign })} ${textColor({color})}`}>
+    <p
+      {...rest}
+      className={`${text({
+        sizes,
+        weights,
+        display,
+        vertical,
+        textAlign,
+      })} ${textColor({ color })}`}
+    >
       {children}
     </p>
   );
@@ -42,9 +50,19 @@ export const TextLink = ({
   children,
   ...rest
 }: TextLinkProps & Partial<TextVariantProps & TextColorVariantProps>) => {
-
   return (
-    <a href='#none' {...rest} className={ `${text({sizes, weights, display, vertical, textAlign })} ${textColor({color})}`} onClick={onClick}>
+    <a
+      href="#none"
+      {...rest}
+      className={`${text({
+        sizes,
+        weights,
+        display,
+        vertical,
+        textAlign,
+      })} ${textColor({ color })}`}
+      onClick={onClick}
+    >
       {children}
     </a>
   );

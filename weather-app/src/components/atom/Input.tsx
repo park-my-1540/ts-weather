@@ -10,9 +10,9 @@ type InputProps = {
   value: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onClick?: React.MouseEventHandler<HTMLInputElement>;
-}
+};
 
-export const Input = ({
+const Input = ({
   id,
   onChange,
   onClick,
@@ -21,17 +21,18 @@ export const Input = ({
   placeholder = '입력해주세요.',
   value = '',
 }: InputProps & Partial<InputVariantProps>) => {
-    
   return (
     <input
-        type="text"
-        id={id}
-        autoComplete='off'
-        onChange={onChange}
-        onClick={onClick}
-        placeholder={placeholder}
-        value={value}
-        className={input({ color, size})}
+      type="text"
+      id={id}
+      autoComplete="off"
+      onChange={onChange}
+      onClick={onClick}
+      placeholder={placeholder}
+      value={value}
+      className={input({ color, size })}
     />
   );
 };
+
+export default Input;

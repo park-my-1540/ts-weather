@@ -1,7 +1,10 @@
 import { atom } from 'recoil';
-type searchType = object[]
+
+type searchType = object[];
 // 초기값 설정
-export const localStorageState = atom<searchType>({
+const localStorageState = atom<searchType>({
   key: 'localStorageState', // 고유 key
-  default: []
+  default: [],
 });
+
+export default localStorageState;

@@ -17,5 +17,5 @@ export const modal = style({
   borderRadius: '8px',
   width: '300px',
   textAlign: 'center',
-  boxShadow: '0 10px 40px -14px rgba(0, 0, 0, 0.25)'
+  boxShadow: '0 10px 40px -14px rgba(0, 0, 0, 0.25)',
 });

@@ -1,7 +1,8 @@
 // App.tsx
-import { device } from "@/styles/style.css";
-import Main from "@/components/main/Main"
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
+import { device } from '@/styles/style.css';
+import Main from '@/components/Main/Main';
+
 export default function Home() {
   return (
     <>
@@ -12,11 +13,10 @@ export default function Home() {
         exit={{ opacity: 1, x: 100 }}
         transition={{ duration: 0.5 }}
       >
-      <div className={device}>
-        <Main/>
-      </div>
-
-    </motion.div>
+        <div className={device}>
+          <Main />
+        </div>
+      </motion.div>
     </>
   );
 }

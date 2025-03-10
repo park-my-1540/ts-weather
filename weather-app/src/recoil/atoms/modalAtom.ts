@@ -1,12 +1,14 @@
-import { atom } from "recoil";
+import { atom } from 'recoil';
 
-export const modalState = atom<{
+const modalState = atom<{
   isOpen: boolean;
   message: string;
 }>({
-  key: "modalState",
+  key: 'modalState',
   default: {
     isOpen: false,
-    message: "",
+    message: '',
   },
 });
+
+export default modalState;

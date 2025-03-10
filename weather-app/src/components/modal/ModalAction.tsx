@@ -1,12 +1,12 @@
 interface ModalActionProps {
-  isOpen: boolean; 
-  message: string
+  isOpen: boolean;
+  message: string;
 }
 
 class ModalAction {
-  private setModal: (value : ModalActionProps) => void;
+  private setModal: (value: ModalActionProps) => void;
 
-  constructor(){
+  constructor() {
     this.setModal = () => {};
   }
 
@@ -14,11 +14,11 @@ class ModalAction {
     this.setModal = setModal;
   }
 
-  open(message : string) {
-    this.setModal({isOpen : true, message});
+  open(message: string) {
+    this.setModal({ isOpen: true, message });
     setTimeout(() => {
-      this.setModal({isOpen: false, message: ""})
-    },1000);
+      this.setModal({ isOpen: false, message: '' });
+    }, 1000);
   }
 }
 

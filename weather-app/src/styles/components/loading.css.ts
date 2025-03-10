@@ -1,11 +1,12 @@
 import { style, keyframes } from '@vanilla-extract/css';
+
 export const loading = style({
   position: 'fixed',
   width: '100%',
   height: '100%',
   zIndex: 99,
-  background: '#000000a8'
-})
+  background: '#000000a8',
+});
 
 export const icon = style({
   position: 'relative',

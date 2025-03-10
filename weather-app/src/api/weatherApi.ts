@@ -1,21 +1,28 @@
 // weatherApi.ts
-import axios from "axios";
-import { WeatherResponse } from "@/types/weather";
-import { WEATHER_KEY } from "@/components/config";
-import { queryWeather } from "@/types/weather";
+import axios from 'axios';
+import { WeatherResponse, queryWeather } from '@/types/weather';
+import { WEATHER_KEY } from '@/components/config';
 
 const convertTime = (_sec: number): string => {
   const date = new Date(_sec * 1000);
-  return date.toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit" });
+  return date.toLocaleTimeString('ko-KR', {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
 };
 
-export const fetchWeatherList = async ({ unit, city, lat, lon }: queryWeather): Promise<WeatherResponse> => {
+const fetchWeatherList = async ({
+  unit,
+  city,
+  lat,
+  lon,
+}: queryWeather): Promise<WeatherResponse> => {
   const current_url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${WEATHER_KEY}&units=${unit}`;
   const forecast_url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=12&appid=${WEATHER_KEY}`;
 
   const [currentResponse, forecastResponse] = await Promise.all([
     axios.get(current_url),
-    axios.get(forecast_url)
+    axios.get(forecast_url),
   ]);
 
   const currentData = currentResponse.data;
@@ -37,7 +44,9 @@ export const fetchWeatherList = async ({ unit, city, lat, lon }: queryWeather): 
         wind_speed: currentData.wind.speed,
         cloud: currentData.clouds.all,
         forecastArray: forecastData,
-      }
-    ]
+      },
+    ],
   };
 };
+
+export default fetchWeatherList;

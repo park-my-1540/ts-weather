@@ -9,8 +9,8 @@ export const flexRowBetween = sprinkles({
 });
 
 export const flexRowAround = sprinkles({
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-around',
+  alignItems: 'center',
 });

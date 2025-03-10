@@ -1,34 +1,35 @@
-import { createThemeContract, createTheme } from '@vanilla-extract/css'
-import { colors } from './sprinkles.css'; // colors 객체 가져오기
+import { createThemeContract, createTheme } from '@vanilla-extract/css';
+import { colors } from './sprinkles.css';
+// colors 객체 가져오기
 type ColorKey = keyof typeof colors;
 
 export const vars = createThemeContract({
   color: {
     primary: '', // primary: 주 색상 (메인 인터랙션, 버튼 등)
-    tertiary:'', //tertiary: 서브 보조 색상
-    bgPrimary: '', //bgPrimary: 메인 배경 색상
+    tertiary: '', // tertiary: 서브 보조 색상
+    bgPrimary: '', // bgPrimary: 메인 배경 색상
     bgSecondary: '',
     bgInactive: '',
     bgInput: '',
-    accent:'', //accent: 강조 색상 (알림, 중요한 정보 표시)
-    textSecondary:'', //accent: 강조 색상 (알림, 중요한 정보 표시)
-    textInfo:'', //accent: 강조 색상 (알림, 중요한 정보 표시)
+    accent: '', // accent: 강조 색상 (알림, 중요한 정보 표시)
+    textSecondary: '', // accent: 강조 색상 (알림, 중요한 정보 표시)
+    textInfo: '', // accent: 강조 색상 (알림, 중요한 정보 표시)
   },
-})
+});
 
 export const lightTheme = createTheme(vars, {
-    color: {
-      primary: colors['gray-700' as ColorKey],
-      tertiary: colors['gray-400' as ColorKey],
-      bgPrimary: colors['gray-200' as ColorKey],
-      bgSecondary: colors['white' as ColorKey],
-      bgInactive: colors['gray-500' as ColorKey],
-      bgInput: colors['white' as ColorKey],
-      accent: colors['white' as ColorKey],
-      textSecondary: colors['gray-600' as ColorKey],
-      textInfo: colors['gray-800' as ColorKey],
-    },
-  })
+  color: {
+    primary: colors['gray-700' as ColorKey],
+    tertiary: colors['gray-400' as ColorKey],
+    bgPrimary: colors['gray-200' as ColorKey],
+    bgSecondary: colors['white' as ColorKey],
+    bgInactive: colors['gray-500' as ColorKey],
+    bgInput: colors['white' as ColorKey],
+    accent: colors['white' as ColorKey],
+    textSecondary: colors['gray-600' as ColorKey],
+    textInfo: colors['gray-800' as ColorKey],
+  },
+});
 export const darkTheme = createTheme(vars, {
   color: {
     primary: colors['gray-500' as ColorKey],
@@ -41,9 +42,9 @@ export const darkTheme = createTheme(vars, {
     textSecondary: colors['gray-600' as ColorKey],
     textInfo: colors['gray-800' as ColorKey],
   },
-})
+});
 
-  /**
+/**
    * primary: 주 색상 (메인 인터랙션, 버튼 등)
     secondary: 보조 색상
     tertiary: 서브 보조 색상
@@ -65,7 +66,7 @@ export const darkTheme = createTheme(vars, {
     textPlaceholder: 플레이스홀더 텍스트 색상
     textAccent: 강조 텍스트 색상
     textDisabled: 비활성화된 텍스트 색상
-    
+
     4. 경계 및 테두리 색상
     border: 일반 경계 색상
     borderFocus: 포커스 시 경계 색상

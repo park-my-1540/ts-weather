@@ -30,7 +30,7 @@ const Flex: React.FC<FlexProps> = ({
         styles.alignItems[align],
         styles.justifyContent[justify],
         styles.gap[gap],
-        className // 외부에서 전달된 className도 병합
+        className, // 외부에서 전달된 className도 병합
       )}
       style={style}
       {...rest}

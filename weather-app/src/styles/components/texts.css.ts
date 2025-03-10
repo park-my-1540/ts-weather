@@ -1,9 +1,9 @@
 import { recipe, RecipeVariants } from '@vanilla-extract/recipes';
-import { style } from '@vanilla-extract/css'
+import { style } from '@vanilla-extract/css';
 
 const base = {
-    margin: '0',
-}
+  margin: '0',
+};
 const variants = {
   sizes: {
     small: style({
@@ -22,11 +22,11 @@ const variants = {
       fontSize: '24px',
     }),
     largeX2: style({
-      fontSize: '50px'
+      fontSize: '50px',
     }),
     big: style({
       fontSize: '120px',
-      lineHeight: '120px'
+      lineHeight: '120px',
     }),
   },
   weights: {
@@ -39,30 +39,30 @@ const variants = {
   },
   display: {
     inlineBlock: style({
-      display: 'inline-block'
-    })
+      display: 'inline-block',
+    }),
   },
   vertical: {
     textTop: style({
-      verticalAlign:'text-Top',
+      verticalAlign: 'text-Top',
     }),
   },
   textAlign: {
     center: style({
-      textAlign:'center',
+      textAlign: 'center',
     }),
   },
 };
 
 export const text = recipe({
-    base: {
-      ...base
-    },
-    variants: variants,
-    defaultVariants: {
-      sizes: 'small',
-      weights: 'normal',
-    },
-  });
+  base: {
+    ...base,
+  },
+  variants,
+  defaultVariants: {
+    sizes: 'small',
+    weights: 'normal',
+  },
+});
 
 export type TextVariantProps = RecipeVariants<typeof text>;

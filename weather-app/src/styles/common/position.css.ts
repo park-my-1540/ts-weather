@@ -8,7 +8,6 @@ export const positionVariants = styleVariants({
   static: { position: 'static' },
 });
 
-export const positioned = style({ //button inline
-
+export const positioned = style({
+  // button inline
 });
-

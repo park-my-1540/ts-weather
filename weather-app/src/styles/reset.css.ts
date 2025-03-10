@@ -25,7 +25,7 @@ globalStyle(
         display: 'revert',
       },
     },
-  }
+  },
 );
 
 /**
@@ -53,7 +53,6 @@ globalStyle('html', {
     },
   },
 });
-
 
 /**
  * a 태그와 button 태그에 pointer 재적용
